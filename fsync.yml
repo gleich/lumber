@@ -3,7 +3,7 @@ replace:
   - before: project_name
     after: lumber
   - before: project_description
-    after: 🪵 A feature rich and easy to use logger for golang
+    after: 🪵 A feature-rich and easy to use logger for golang
   - before: github_username
     after: Matt-Gleich
   - before: project_author_email

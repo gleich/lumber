@@ -2,7 +2,7 @@
 
 # lumber
 
-🪵 A feature rich and easy to use logger for golang
+🪵 A feature-rich and easy to use logger for golang
 
 ![test](https://github.com/Matt-Gleich/lumber/workflows/test/badge.svg)
 ![lint](https://github.com/Matt-Gleich/lumber/workflows/lint/badge.svg)
