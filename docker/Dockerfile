@@ -1,8 +1,8 @@
 FROM golang:1.15-alpine3.12 AS builder
 
 # Meta data:
-LABEL maintainer="project_author_email"
-LABEL description="project_description"
+LABEL maintainer="email@mattglei.ch"
+LABEL description="🪵 A feature rich and easy to use logger for golang"
 
 # Copying over all the files:
 COPY . /usr/src/app

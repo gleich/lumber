@@ -1,8 +1,8 @@
 FROM golangci/golangci-lint:v1.33
 
 # Meta data
-LABEL maintainer="project_author_email"
-LABEL description="project_description"
+LABEL maintainer="email@mattglei.ch"
+LABEL description="🪵 A feature rich and easy to use logger for golang"
 
 # Copying over files
 COPY . /usr/src/app

@@ -1,6 +1,6 @@
 # Contributing
 
-👋 Welcome to project_name! Thank you for showing interest in contributing to project_name, we would love to have your contribution. Below are some details on how to contribute to project_name. Please read carefully!
+👋 Welcome to lumber! Thank you for showing interest in contributing to lumber, we would love to have your contribution. Below are some details on how to contribute to lumber. Please read carefully!
 
 - [Contributing](#contributing)
   - [🐛 Requesting Features/Reporting Bugs](#-requesting-featuresreporting-bugs)

@@ -2,18 +2,18 @@
 
 # Run `init.py`
 
-# project_name
+# lumber
 
-project_description
+🪵 A feature rich and easy to use logger for golang
 
-![build](https://github.com/github_username/project_name/workflows/build/badge.svg)
-![test](https://github.com/github_username/project_name/workflows/test/badge.svg)
-![lint](https://github.com/github_username/project_name/workflows/lint/badge.svg)
-![release](https://github.com/github_username/project_name/workflows/release/badge.svg)
+![build](https://github.com/Matt-Gleich/lumber/workflows/build/badge.svg)
+![test](https://github.com/Matt-Gleich/lumber/workflows/test/badge.svg)
+![lint](https://github.com/Matt-Gleich/lumber/workflows/lint/badge.svg)
+![release](https://github.com/Matt-Gleich/lumber/workflows/release/badge.svg)
 
 ## 🙌 Contributing
 
-Before contributing please read the [CONTRIBUTING.md file](https://github.com/Matt-Gleich/project_name/blob/master/CONTRIBUTING.md).
+Before contributing please read the [CONTRIBUTING.md file](https://github.com/Matt-Gleich/lumber/blob/master/CONTRIBUTING.md).
 
 <!-- DO NOT REMOVE - contributor_list:start -->
 ## 👥 Contributors
