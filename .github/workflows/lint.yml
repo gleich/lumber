@@ -21,16 +21,6 @@ jobs:
       - name: Checkout Repository
         uses: actions/checkout@v2
       - run: make lint-gomod
-  goreleaser:
-    runs-on: ubuntu-latest
-    steps:
-      - name: Checkout Repository
-        uses: actions/checkout@v2
-      - name: Run Check
-        uses: goreleaser/goreleaser-action@v2
-        with:
-          version: latest
-          args: check
   hadolint:
     runs-on: ubuntu-latest
     steps:
