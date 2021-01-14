@@ -25,10 +25,6 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
-      - name: Linting Dockerfile
-        uses: brpaz/hadolint-action@master
-        with:
-          dockerfile: 'docker/Dockerfile'
       - name: Linting dev.Dockerfile
         uses: brpaz/hadolint-action@master
         with:
