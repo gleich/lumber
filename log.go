@@ -5,6 +5,8 @@ import (
 	"log"
 	"os"
 	"time"
+
+	"github.com/pkg/errors"
 )
 
 // Global options available to a user to change.
@@ -36,7 +38,7 @@ func logError(stat status, t time.Time, err error, ctx ...interface{}) {
 	if err == nil {
 		out = format(stat, t, separateWithSpaces(ctx...))
 	} else {
-		out = format(stat, t, fmt.Sprintf("%v\n\n--- Stack Trace ---\n%v", separateWithSpaces(ctx...), err))
+		out = format(stat, t, fmt.Sprintf("%v\n\n--- Stack Trace ---\n%+v", separateWithSpaces(ctx...), errors.WithStack(err)))
 	}
 
 	errLogger.Println(out)
