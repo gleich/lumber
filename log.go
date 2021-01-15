@@ -20,7 +20,7 @@ var (
 	// Normal logger for Debug, Success, Warning, and Info
 	normalLogger = log.New(NormalOut, "", 0)
 	// Error logger for Fatal and Error
-	errLogger = log.New(NormalOut, "", 0)
+	errLogger = log.New(ErrOut, "", 0)
 )
 
 // Log a normal status (Debug, Success, Warning, and Info)
