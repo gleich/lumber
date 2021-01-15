@@ -40,9 +40,7 @@ func format(stat status, t time.Time, message string) string {
 	}
 	col := color.New(statusColorMap[stat]...)
 
-	out := fmt.Sprintf(`
-
-%v %v
+	out := fmt.Sprintf(`%v %v
 %v
 `,
 		col.Sprintf(string(stat)),
@@ -50,8 +48,17 @@ func format(stat status, t time.Time, message string) string {
 		message)
 
 	if !Padding {
-		out = strings.Trim(out, "\n")
+		out = strings.TrimSuffix(out, "\n")
 	}
 
 	return out
+}
+
+// Join all the items in an interface together with spaces
+func separateWithSpaces(items ...interface{}) string {
+	var joined string
+	for _, item := range items {
+		joined = fmt.Sprintf("%v %v", joined, item)
+	}
+	return strings.TrimPrefix(joined, " ")
 }
