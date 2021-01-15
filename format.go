@@ -40,7 +40,7 @@ func format(stat status, t time.Time, message string) string {
 	}
 	col := color.New(statusColorMap[stat]...)
 
-	out := fmt.Sprintf(`%v %v
+	out := fmt.Sprintf(`%v | %v
 %v
 `,
 		col.Sprintf(string(stat)),

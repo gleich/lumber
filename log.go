@@ -1,6 +1,7 @@
 package lumber
 
 import (
+	"fmt"
 	"log"
 	"os"
 	"time"
@@ -16,8 +17,6 @@ var (
 	// Fatal exit status
 	ExitStatus = 1
 
-	// Loggers
-
 	// Normal logger for Debug, Success, Warning, and Info
 	normalLogger = log.New(NormalOut, "", 0)
 	// Error logger for Fatal and Error
@@ -31,8 +30,15 @@ func logNormal(stat status, t time.Time, ctx ...interface{}) {
 }
 
 // Log a normal status (Debug, Success, Warning, and Info)
-func logError(stat status, t time.Time, ctx ...interface{}) {
-	out := format(stat, t, separateWithSpaces(ctx...))
+func logError(stat status, t time.Time, err error, ctx ...interface{}) {
+	var out string
+
+	if err == nil {
+		out = format(stat, t, separateWithSpaces(ctx...))
+	} else {
+		out = format(stat, t, fmt.Sprintf("%v\n\n--- Stack Trace ---\n%v", separateWithSpaces(ctx...), err))
+	}
+
 	errLogger.Println(out)
 }
 
@@ -57,12 +63,29 @@ func Warning(ctx ...interface{}) {
 }
 
 // Output an error log
-func Error(ctx ...interface{}) {
-	logError(errorStatus, time.Now(), ctx...)
+func Error(err error, ctx ...interface{}) {
+	if err != nil {
+		logError(errorStatus, time.Now(), err, ctx...)
+	}
+}
+
+// Output an error log and run a given function before
+func ErrorHook(hook func(), err error, ctx ...interface{}) {
+	if err != nil {
+		hook()
+		logError(errorStatus, time.Now(), err, ctx...)
+	}
+}
+
+// Output an error log with no actual error value
+func ErrorMsg(ctx ...interface{}) {
+	logError(errorStatus, time.Now(), nil, ctx...)
 }
 
 // Output a fatal log
-func Fatal(ctx ...interface{}) {
-	logError(fatalStatus, time.Now(), ctx...)
-	os.Exit(ExitStatus)
+func Fatal(err error, ctx ...interface{}) {
+	if err != nil {
+		logError(fatalStatus, time.Now(), err, ctx...)
+		os.Exit(ExitStatus)
+	}
 }
