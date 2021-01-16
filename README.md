@@ -2,7 +2,7 @@
 
 <div align="center">
     <h1>🪵 lumber 🪵</h1>
-    <img alt="Godoc Reference" src="https://godoc.org/github.com/go-git/go-git/v5?status.svg">
+    <a href="https://pkg.go.dev/github.com/Matt-Gleich/lumber"><img alt="Godoc Reference" src="https://godoc.org/github.com/Matt-Gleich/lumber?status.svg"></a>
     <img alt="test workflow result" src="https://github.com/Matt-Gleich/lumber/workflows/test/badge.svg">
     <img alt="lint workflow result" src="https://github.com/Matt-Gleich/lumber/workflows/lint/badge.svg">
     <br/>
