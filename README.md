@@ -1,4 +1,4 @@
-<!-- DO NOT REMOVE - contributor_list:data:start:["Matt-Gleich"]:end -->
+<!-- DO NOT REMOVE - contributor_list:data:start:["Matt-Gleich", "ImgBotApp"]:end -->
 
 <div align="center">
     <h1>🪵 lumber 🪵</h1>
@@ -310,9 +310,11 @@ All normal log functions have a twin function that accepts a custom time. All of
 Before contributing please read the [CONTRIBUTING.md file](https://github.com/Matt-Gleich/lumber/blob/master/CONTRIBUTING.md).
 
 <!-- DO NOT REMOVE - contributor_list:start -->
-
 ## 👥 Contributors
 
+
 - **[@Matt-Gleich](https://github.com/Matt-Gleich)**
+
+- **[@ImgBotApp](https://github.com/ImgBotApp)**
 
 <!-- DO NOT REMOVE - contributor_list:end -->
