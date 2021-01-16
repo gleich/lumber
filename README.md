@@ -1,27 +1,33 @@
 <!-- DO NOT REMOVE - contributor_list:data:start:["Matt-Gleich"]:end -->
 
-# lumber
+<div align="center">
+    <h1>🪵 lumber 🪵</h1>
+    <img alt="Godoc Reference" src="https://godoc.org/github.com/go-git/go-git/v5?status.svg">
+    <img alt="test workflow result" src="https://github.com/Matt-Gleich/lumber/workflows/test/badge.svg">
+    <img alt="lint workflow result" src="https://github.com/Matt-Gleich/lumber/workflows/lint/badge.svg">
+    <br/>
+    <img alt="GitHub go.mod Go version" src="https://img.shields.io/github/go-mod/go-version/Matt-Gleich/fgh">
+    <img alt="Golang report card" src ="https://goreportcard.com/badge/github.com/Matt-Gleich/lumber">
+    <br/>
+    <br/>
+    <i>A feature-rich and easy to use logger for golang</i>
+</div>
+<hr>
 
-![test](https://github.com/Matt-Gleich/lumber/workflows/test/badge.svg)
-![lint](https://github.com/Matt-Gleich/lumber/workflows/lint/badge.svg)
-
-🪵 A feature-rich and easy to use logger for golang
-
-- [lumber](#lumber)
-  - [🌲 Common Logs](#-common-logs)
-    - [`lumber.Success()`](#lumbersuccess)
-    - [`lumber.Info()`](#lumberinfo)
-    - [`lumber.Debug()`](#lumberdebug)
-    - [`lumber.Warning()`](#lumberwarning)
-    - [`lumber.Error()`](#lumbererror)
-    - [`lumber.ErrorHook()`](#lumbererrorhook)
-    - [`lumber.ErrorMsg()`](#lumbererrormsg)
-    - [`lumber.Fatal()`](#lumberfatal)
-    - [`lumber.FatalHook()`](#lumberfatalhook)
-  - [⚙️ Customization](#️-customization)
-  - [⏰ Changing the log time](#-changing-the-log-time)
-  - [🙌 Contributing](#-contributing)
-  - [👥 Contributors](#-contributors)
+- [🌲 Common Logs](#-common-logs)
+  - [`lumber.Success()`](#lumbersuccess)
+  - [`lumber.Info()`](#lumberinfo)
+  - [`lumber.Debug()`](#lumberdebug)
+  - [`lumber.Warning()`](#lumberwarning)
+  - [`lumber.Error()`](#lumbererror)
+  - [`lumber.ErrorHook()`](#lumbererrorhook)
+  - [`lumber.ErrorMsg()`](#lumbererrormsg)
+  - [`lumber.Fatal()`](#lumberfatal)
+  - [`lumber.FatalHook()`](#lumberfatalhook)
+- [⚙️ Customization](#️-customization)
+- [⏰ Changing the log time](#-changing-the-log-time)
+- [🙌 Contributing](#-contributing)
+- [👥 Contributors](#-contributors)
 
 ## 🌲 Common Logs
 

@@ -9,7 +9,6 @@ import (
 	"github.com/pkg/errors"
 )
 
-// Global options available to a user to change.
 var (
 	// The output file for Debug, Success, Warning, and Info
 	NormalOut = os.Stdout
