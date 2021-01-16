@@ -16,13 +16,25 @@ var (
 	// The output file for Fatal and Error
 	ErrOut = os.Stderr
 
-	// Fatal exit status
+	// Fatal exit code
 	ExitStatus = 1
 
 	// Normal logger for Debug, Success, Warning, and Info
 	normalLogger = log.New(NormalOut, "", 0)
 	// Error logger for Fatal and Error
 	errLogger = log.New(ErrOut, "", 0)
+)
+
+// Log status
+type status string
+
+const (
+	successStatus status = "   SUCCESS   "
+	fatalStatus   status = "    FATAL    "
+	errorStatus   status = "    ERROR    "
+	warningStatus status = "   WARNING   "
+	infoStatus    status = "    INFO     "
+	debugStatus   status = "    DEBUG    "
 )
 
 // Log a normal status (Debug, Success, Warning, and Info)
@@ -87,6 +99,15 @@ func ErrorMsg(ctx ...interface{}) {
 // Output a fatal log
 func Fatal(err error, ctx ...interface{}) {
 	if err != nil {
+		logError(fatalStatus, time.Now(), err, ctx...)
+		os.Exit(ExitStatus)
+	}
+}
+
+// Output a fatal log and run a given function before
+func FatalHook(hook func(), err error, ctx ...interface{}) {
+	if err != nil {
+		hook()
 		logError(fatalStatus, time.Now(), err, ctx...)
 		os.Exit(ExitStatus)
 	}

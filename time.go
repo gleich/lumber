@@ -25,14 +25,14 @@ func WarningWithTime(t time.Time, ctx ...interface{}) {
 	logNormal(warningStatus, t, ctx...)
 }
 
-// Output an error log
+// Output an error log with a given time
 func ErrorWithTime(err error, t time.Time, ctx ...interface{}) {
 	if err != nil {
 		logError(errorStatus, t, err, ctx...)
 	}
 }
 
-// Output an error log and run a given function before
+// Output an error log and run a given function before with a given time
 func ErrorHookWithTime(hook func(), err error, t time.Time, ctx ...interface{}) {
 	if err != nil {
 		hook()
@@ -40,14 +40,23 @@ func ErrorHookWithTime(hook func(), err error, t time.Time, ctx ...interface{}) 
 	}
 }
 
-// Output an error log with no actual error value
+// Output an error log with no actual error value with a given time
 func ErrorMsgWithTime(t time.Time, ctx ...interface{}) {
 	logError(errorStatus, t, nil, ctx...)
 }
 
-// Output a fatal log
+// Output a fatal log with a given time
 func FatalWithTime(err error, t time.Time, ctx ...interface{}) {
 	if err != nil {
+		logError(fatalStatus, t, err, ctx...)
+		os.Exit(ExitStatus)
+	}
+}
+
+// Output a fatal log and run a given function before with a given time
+func FatalHookWithTime(hook func(), t time.Time, err error, ctx ...interface{}) {
+	if err != nil {
+		hook()
 		logError(fatalStatus, t, err, ctx...)
 		os.Exit(ExitStatus)
 	}
