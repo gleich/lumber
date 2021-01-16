@@ -14,6 +14,7 @@
 </div>
 <hr>
 
+- [🚀 Install](#-install)
 - [🌲 Common Logs](#-common-logs)
   - [`lumber.Success()`](#lumbersuccess)
   - [`lumber.Info()`](#lumberinfo)
@@ -28,6 +29,14 @@
 - [⏰ Changing the log time](#-changing-the-log-time)
 - [🙌 Contributing](#-contributing)
 - [👥 Contributors](#-contributors)
+
+## 🚀 Install
+
+Simply run the following from your project root:
+
+```bash
+go get -u github.com/Matt-Gleich/lumber
+```
 
 ## 🌲 Common Logs
 
