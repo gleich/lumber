@@ -24,6 +24,7 @@
   - [`lumber.ErrorHook()`](#lumbererrorhook)
   - [`lumber.ErrorMsg()`](#lumbererrormsg)
   - [`lumber.Fatal()`](#lumberfatal)
+  - [`lumber.FatalMsg()`](#lumberfatalmsg)
   - [`lumber.FatalHook()`](#lumberfatalhook)
 - [⚙️ Customization](#️-customization)
 - [⏰ Changing the log time](#-changing-the-log-time)
@@ -247,6 +248,26 @@ func main() {
 Outputs:
 
 ![fatal output](images/fatal.png)
+
+### [`lumber.FatalMsg()`](https://pkg.go.dev/github.com/Matt-Gleich/lumber#FatalMsg)
+
+Output a fatal message.
+
+Demo:
+
+```go
+package main
+
+import "github.com/Matt-Gleich/lumber"
+
+func main() {
+    lumber.FatalMsg("Ahhh stuff broke")
+}
+```
+
+Outputs:
+
+![fatalMsg output](images/fatalMsg.png)
 
 ### [`lumber.FatalHook()`](https://pkg.go.dev/github.com/Matt-Gleich/lumber#FatalHook)
 

@@ -103,6 +103,12 @@ func Fatal(err error, ctx ...interface{}) {
 	}
 }
 
+// Output a fatal log with no actual error value
+func FatalMsg(ctx ...interface{}) {
+	logError(fatalStatus, time.Now(), nil, ctx...)
+	os.Exit(ExitStatus)
+}
+
 // Output a fatal log and run a given function before
 func FatalHook(hook func(), err error, ctx ...interface{}) {
 	if err != nil {
