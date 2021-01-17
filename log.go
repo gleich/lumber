@@ -82,14 +82,6 @@ func Error(err error, ctx ...interface{}) {
 	}
 }
 
-// Output an error log and run a given function before
-func ErrorHook(hook func(), err error, ctx ...interface{}) {
-	if err != nil {
-		hook()
-		logError(errorStatus, time.Now(), err, ctx...)
-	}
-}
-
 // Output an error log with no actual error value
 func ErrorMsg(ctx ...interface{}) {
 	logError(errorStatus, time.Now(), nil, ctx...)
@@ -107,13 +99,4 @@ func Fatal(err error, ctx ...interface{}) {
 func FatalMsg(ctx ...interface{}) {
 	logError(fatalStatus, time.Now(), nil, ctx...)
 	os.Exit(ExitStatus)
-}
-
-// Output a fatal log and run a given function before
-func FatalHook(hook func(), err error, ctx ...interface{}) {
-	if err != nil {
-		hook()
-		logError(fatalStatus, time.Now(), err, ctx...)
-		os.Exit(ExitStatus)
-	}
 }

@@ -21,11 +21,9 @@
   - [`lumber.Debug()`](#lumberdebug)
   - [`lumber.Warning()`](#lumberwarning)
   - [`lumber.Error()`](#lumbererror)
-  - [`lumber.ErrorHook()`](#lumbererrorhook)
   - [`lumber.ErrorMsg()`](#lumbererrormsg)
   - [`lumber.Fatal()`](#lumberfatal)
   - [`lumber.FatalMsg()`](#lumberfatalmsg)
-  - [`lumber.FatalHook()`](#lumberfatalhook)
 - [⚙️ Customization](#️-customization)
 - [⏰ Changing the log time](#-changing-the-log-time)
 - [🙌 Contributing](#-contributing)
@@ -171,38 +169,6 @@ Outputs:
 
 ![error output](images/error.png)
 
-### [`lumber.ErrorHook()`](https://pkg.go.dev/github.com/Matt-Gleich/lumber#ErrorHook)
-
-Output an error log. If `err != nil` the error will automatically trigger the given function and get logged to the console.
-
-Demo:
-
-```go
-package main
-
-import (
-    "fmt"
-    "io/ioutil"
-
-    "github.com/Matt-Gleich/lumber"
-)
-
-func main() {
-    fName := "invisible-file.txt"
-    _, err := ioutil.ReadFile(fName)
-    lumber.ErrorHook(
-        func() {
-            fmt.Println("This print line runs before the error log!")
-        },
-        err, "Failed to read from", fName,
-    )
-}
-```
-
-Outputs:
-
-![errorHook output](images/errorHook.png)
-
 ### [`lumber.ErrorMsg()`](https://pkg.go.dev/github.com/Matt-Gleich/lumber#ErrorMsg)
 
 Output an error message.
@@ -268,42 +234,6 @@ func main() {
 Outputs:
 
 ![fatalMsg output](images/fatalMsg.png)
-
-### [`lumber.FatalHook()`](https://pkg.go.dev/github.com/Matt-Gleich/lumber#FatalHook)
-
-Output a fatal log. If `err != nil` the following will happen:
-
-1. Given function will run
-2. Error is logged
-3. Program exits (default code is 1)
-
-Demo:
-
-```go
-package main
-
-import (
-    "fmt"
-    "io/ioutil"
-
-    "github.com/Matt-Gleich/lumber"
-)
-
-func main() {
-    fName := "invisible-file.txt"
-    _, err := ioutil.ReadFile(fName)
-    lumber.FatalHook(
-        func() {
-            fmt.Println("This print line runs before the error log!")
-        },
-        err, "Failed to read from", fName,
-    )
-}
-```
-
-Outputs:
-
-![fatalHook output](images/fatalHook.png)
 
 ## ⚙️ Customization
 
