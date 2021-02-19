@@ -14,6 +14,8 @@ var (
 	NormalOut = os.Stdout
 	// The output file for Fatal and Error
 	ErrOut = os.Stderr
+	// If errors should automatically be checked for a non-nil value
+	ErrNilCheck = true
 
 	// Fatal exit code
 	ExitStatus = 1
@@ -77,7 +79,7 @@ func Warning(ctx ...interface{}) {
 
 // Output an error log
 func Error(err error, ctx ...interface{}) {
-	if err != nil {
+	if !ErrNilCheck || err != nil {
 		logError(errorStatus, time.Now(), err, ctx...)
 	}
 }
@@ -89,7 +91,7 @@ func ErrorMsg(ctx ...interface{}) {
 
 // Output a fatal log
 func Fatal(err error, ctx ...interface{}) {
-	if err != nil {
+	if !ErrNilCheck || err != nil {
 		logError(fatalStatus, time.Now(), err, ctx...)
 		os.Exit(ExitStatus)
 	}

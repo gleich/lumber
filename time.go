@@ -27,7 +27,7 @@ func WarningWithTime(t time.Time, ctx ...interface{}) {
 
 // Output an error log with a given time
 func ErrorWithTime(err error, t time.Time, ctx ...interface{}) {
-	if err != nil {
+	if !ErrNilCheck || err != nil {
 		logError(errorStatus, t, err, ctx...)
 	}
 }
@@ -39,7 +39,7 @@ func ErrorMsgWithTime(t time.Time, ctx ...interface{}) {
 
 // Output a fatal log with a given time
 func FatalWithTime(err error, t time.Time, ctx ...interface{}) {
-	if err != nil {
+	if !ErrNilCheck || err != nil {
 		logError(fatalStatus, t, err, ctx...)
 		os.Exit(ExitStatus)
 	}

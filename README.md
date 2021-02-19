@@ -239,13 +239,14 @@ Outputs:
 
 You can customize lumber by changing any of its global variables:
 
-| **Variable Name**      | **Description**                                                                     | **Default Value**      | **Type**   |
-| ---------------------- | ----------------------------------------------------------------------------------- | ---------------------- | ---------- |
-| `lumber.NormalOut`     | The output file for Debug, Success, Warning, and Info                               | `os.Stdout`            | `*os.File` |
-| `lumber.ErrOut`        | The output file for Fatal and Error                                                 | `os.Stderr`            | `*os.File` |
-| `lumber.ExitStatus`    | Fatal exit code                                                                     | `1`                    | `int`      |
-| `lumber.Padding`       | If the log should have an extra new line at the bottom                              | `true`                 | `bool`     |
-| `lumber.ColoredOutput` | If the output should have color                                                     | `true`                 | `bool`     |
+| **Variable Name**      | **Description**                                                                      | **Default Value**      | **Type**   |
+| ---------------------- | ------------------------------------------------------------------------------------ | ---------------------- | ---------- |
+| `lumber.NormalOut`     | The output file for Debug, Success, Warning, and Info                                | `os.Stdout`            | `*os.File` |
+| `lumber.ErrOut`        | The output file for Fatal and Error                                                  | `os.Stderr`            | `*os.File` |
+| `lumber.ErrNilCheck`   | If errors should automatically be checked for a non-nil value                            | `true`                 | `bool`     |
+| `lumber.ExitStatus`    | Fatal exit code                                                                      | `1`                    | `int`      |
+| `lumber.Padding`       | If the log should have an extra new line at the bottom                               | `true`                 | `bool`     |
+| `lumber.ColoredOutput` | If the output should have color                                                      | `true`                 | `bool`     |
 | `lumber.TrueColor`     | If the output colors should be true colors. Default is true if terminal supports it. | `has256ColorSupport()` | `bool`     |
 
 Example of changing one of these variables:
@@ -257,7 +258,7 @@ import "github.com/Matt-Gleich/lumber"
 
 func main() {
     lumber.ColoredOutput = false
-    lumber.Debug("See! No color")
+    lumber.Debug("See, no color!")
 }
 ```
 
@@ -270,8 +271,8 @@ All normal log functions have a twin function that accepts a custom time. All of
 Before contributing please read the [CONTRIBUTING.md file](https://github.com/Matt-Gleich/lumber/blob/master/CONTRIBUTING.md).
 
 <!-- DO NOT REMOVE - contributor_list:start -->
-## 👥 Contributors
 
+## 👥 Contributors
 
 - **[@Matt-Gleich](https://github.com/Matt-Gleich)**
 
