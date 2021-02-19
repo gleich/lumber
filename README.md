@@ -6,7 +6,7 @@
     <img alt="test workflow result" src="https://github.com/Matt-Gleich/lumber/workflows/test/badge.svg">
     <img alt="lint workflow result" src="https://github.com/Matt-Gleich/lumber/workflows/lint/badge.svg">
     <br/>
-    <img alt="GitHub go.mod Go version" src="https://img.shields.io/github/go-mod/go-version/Matt-Gleich/fgh">
+    <img alt="GitHub go.mod Go version" src="https://img.shields.io/github/go-mod/go-version/Matt-Gleich/lumber">
     <img alt="Golang report card" src ="https://goreportcard.com/badge/github.com/Matt-Gleich/lumber">
     <br/>
     <br/>
@@ -145,7 +145,7 @@ Outputs:
 
 ### [`lumber.Error()`](https://pkg.go.dev/github.com/Matt-Gleich/lumber#Error)
 
-Output an error log. If `err != nil` the error will automatically get logged to the console.
+Output an error log. If `err != nil` the error will automatically get logged to the console. This auto-check can be turned off in the [customization section](#️-customization).
 
 Demo:
 
@@ -191,7 +191,7 @@ Outputs:
 
 ### [`lumber.Fatal()`](https://pkg.go.dev/github.com/Matt-Gleich/lumber#Fatal)
 
-Output a fatal log. If `err != nil` the error will automatically get logged to the console and the program will exit (default code is 1).
+Output a fatal log. If `err != nil` the error will automatically get logged to the console and the program will exit (default code is 1). This auto-check can be turned off in the [customization section](#️-customization).
 
 Demo:
 
