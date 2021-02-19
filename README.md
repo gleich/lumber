@@ -243,7 +243,7 @@ You can customize lumber by changing any of its global variables:
 | ---------------------- | ------------------------------------------------------------------------------------ | ---------------------- | ---------- |
 | `lumber.NormalOut`     | The output file for Debug, Success, Warning, and Info                                | `os.Stdout`            | `*os.File` |
 | `lumber.ErrOut`        | The output file for Fatal and Error                                                  | `os.Stderr`            | `*os.File` |
-| `lumber.ErrNilCheck`   | If errors should automatically be checked for a non-nil value                            | `true`                 | `bool`     |
+| `lumber.ErrNilCheck`   | If errors should automatically be checked for a non-nil value                        | `true`                 | `bool`     |
 | `lumber.ExitStatus`    | Fatal exit code                                                                      | `1`                    | `int`      |
 | `lumber.Padding`       | If the log should have an extra new line at the bottom                               | `true`                 | `bool`     |
 | `lumber.ColoredOutput` | If the output should have color                                                      | `true`                 | `bool`     |
