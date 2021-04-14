@@ -19,6 +19,8 @@ var (
 
 	// Fatal exit code
 	ExitStatus = 1
+	// If stack traces should be included
+	ShowStack = true
 
 	// Normal logger for Debug, Success, Warning, and Info
 	normalLogger = log.New(NormalOut, "", 0)
@@ -48,7 +50,7 @@ func logNormal(stat status, t time.Time, ctx ...interface{}) {
 func logError(stat status, t time.Time, err error, ctx ...interface{}) {
 	var out string
 
-	if err == nil {
+	if err == nil || !ShowStack {
 		out = format(stat, t, separateWithSpaces(ctx...))
 	} else {
 		out = format(stat, t, fmt.Sprintf("%v\n\n--- Stack Trace ---\n%+v", separateWithSpaces(ctx...), errors.WithStack(err)))

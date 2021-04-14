@@ -248,6 +248,7 @@ You can customize lumber by changing any of its global variables:
 | `lumber.Padding`       | If the log should have an extra new line at the bottom                               | `true`                 | `bool`     |
 | `lumber.ColoredOutput` | If the output should have color                                                      | `true`                 | `bool`     |
 | `lumber.TrueColor`     | If the output colors should be true colors. Default is true if terminal supports it. | `has256ColorSupport()` | `bool`     |
+| `lumber.ShowStack`     | If stack traces should be shown                                                      | `true`                 | `bool`     |
 
 Example of changing one of these variables:
 
