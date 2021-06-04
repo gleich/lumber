@@ -1,13 +1,13 @@
-<!-- DO NOT REMOVE - contributor_list:data:start:["Matt-Gleich", "ImgBotApp"]:end -->
+<!-- DO NOT REMOVE - contributor_list:data:start:["gleich", "ImgBotApp"]:end -->
 
 <div align="center">
     <h1>🪵 lumber 🪵</h1>
-    <a href="https://pkg.go.dev/github.com/Matt-Gleich/lumber"><img alt="Godoc Reference" src="https://godoc.org/github.com/Matt-Gleich/lumber?status.svg"></a>
-    <img alt="test workflow result" src="https://github.com/Matt-Gleich/lumber/workflows/test/badge.svg">
-    <img alt="lint workflow result" src="https://github.com/Matt-Gleich/lumber/workflows/lint/badge.svg">
+    <a href="https://pkg.go.dev/github.com/gleich/lumber"><img alt="Godoc Reference" src="https://godoc.org/github.com/gleich/lumber?status.svg"></a>
+    <img alt="test workflow result" src="https://github.com/gleich/lumber/workflows/test/badge.svg">
+    <img alt="lint workflow result" src="https://github.com/gleich/lumber/workflows/lint/badge.svg">
     <br/>
-    <img alt="GitHub go.mod Go version" src="https://img.shields.io/github/go-mod/go-version/Matt-Gleich/lumber">
-    <img alt="Golang report card" src ="https://goreportcard.com/badge/github.com/Matt-Gleich/lumber">
+    <img alt="GitHub go.mod Go version" src="https://img.shields.io/github/go-mod/go-version/gleich/lumber">
+    <img alt="Golang report card" src ="https://goreportcard.com/badge/github.com/gleich/lumber">
     <br/>
     <br/>
     <i>A feature-rich and easy to use logger for golang</i>
@@ -34,12 +34,12 @@
 Simply run the following from your project root:
 
 ```bash
-go get -u github.com/Matt-Gleich/lumber
+go get -u github.com/gleich/lumber
 ```
 
 ## 🌲 Common Logs
 
-### [`lumber.Success()`](https://pkg.go.dev/github.com/Matt-Gleich/lumber#Success)
+### [`lumber.Success()`](https://pkg.go.dev/github.com/gleich/lumber#Success)
 
 Output a success log.
 
@@ -51,7 +51,7 @@ package main
 import (
     "time"
 
-    "github.com/Matt-Gleich/lumber"
+    "github.com/gleich/lumber"
 )
 
 func main() {
@@ -65,7 +65,7 @@ Outputs:
 
 ![success output](images/success.png)
 
-### [`lumber.Info()`](https://pkg.go.dev/github.com/Matt-Gleich/lumber#Info)
+### [`lumber.Info()`](https://pkg.go.dev/github.com/gleich/lumber#Info)
 
 Output an info log.
 
@@ -77,7 +77,7 @@ package main
 import (
     "time"
 
-    "github.com/Matt-Gleich/lumber"
+    "github.com/gleich/lumber"
 )
 
 func main() {
@@ -91,7 +91,7 @@ Outputs:
 
 ![info output](images/info.png)
 
-### [`lumber.Debug()`](https://pkg.go.dev/github.com/Matt-Gleich/lumber#Debug)
+### [`lumber.Debug()`](https://pkg.go.dev/github.com/gleich/lumber#Debug)
 
 Output a debug log.
 
@@ -103,7 +103,7 @@ package main
 import (
     "os"
 
-    "github.com/Matt-Gleich/lumber"
+    "github.com/gleich/lumber"
 )
 
 func main() {
@@ -116,7 +116,7 @@ Outputs:
 
 ![debug output](images/debug.png)
 
-### [`lumber.Warning()`](https://pkg.go.dev/github.com/Matt-Gleich/lumber#Warning)
+### [`lumber.Warning()`](https://pkg.go.dev/github.com/gleich/lumber#Warning)
 
 Output a warning log.
 
@@ -128,7 +128,7 @@ package main
 import (
     "time"
 
-    "github.com/Matt-Gleich/lumber"
+    "github.com/gleich/lumber"
 )
 
 func main() {
@@ -143,7 +143,7 @@ Outputs:
 
 ![warning output](images/warning.png)
 
-### [`lumber.Error()`](https://pkg.go.dev/github.com/Matt-Gleich/lumber#Error)
+### [`lumber.Error()`](https://pkg.go.dev/github.com/gleich/lumber#Error)
 
 Output an error log. If `err != nil` the error will automatically get logged to the console. This auto-check can be turned off in the [customization section](#️-customization).
 
@@ -155,7 +155,7 @@ package main
 import (
     "io/ioutil"
 
-    "github.com/Matt-Gleich/lumber"
+    "github.com/gleich/lumber"
 )
 
 func main() {
@@ -169,7 +169,7 @@ Outputs:
 
 ![error output](images/error.png)
 
-### [`lumber.ErrorMsg()`](https://pkg.go.dev/github.com/Matt-Gleich/lumber#ErrorMsg)
+### [`lumber.ErrorMsg()`](https://pkg.go.dev/github.com/gleich/lumber#ErrorMsg)
 
 Output an error message.
 
@@ -178,7 +178,7 @@ Demo:
 ```go
 package main
 
-import "github.com/Matt-Gleich/lumber"
+import "github.com/gleich/lumber"
 
 func main() {
     lumber.ErrorMsg("Ahhh stuff broke")
@@ -189,7 +189,7 @@ Outputs:
 
 ![errorMsg output](images/errorMsg.png)
 
-### [`lumber.Fatal()`](https://pkg.go.dev/github.com/Matt-Gleich/lumber#Fatal)
+### [`lumber.Fatal()`](https://pkg.go.dev/github.com/gleich/lumber#Fatal)
 
 Output a fatal log. If `err != nil` the error will automatically get logged to the console and the program will exit (default code is 1). This auto-check can be turned off in the [customization section](#️-customization).
 
@@ -201,7 +201,7 @@ package main
 import (
     "io/ioutil"
 
-    "github.com/Matt-Gleich/lumber"
+    "github.com/gleich/lumber"
 )
 
 func main() {
@@ -215,7 +215,7 @@ Outputs:
 
 ![fatal output](images/fatal.png)
 
-### [`lumber.FatalMsg()`](https://pkg.go.dev/github.com/Matt-Gleich/lumber#FatalMsg)
+### [`lumber.FatalMsg()`](https://pkg.go.dev/github.com/gleich/lumber#FatalMsg)
 
 Output a fatal message.
 
@@ -224,7 +224,7 @@ Demo:
 ```go
 package main
 
-import "github.com/Matt-Gleich/lumber"
+import "github.com/gleich/lumber"
 
 func main() {
     lumber.FatalMsg("Ahhh stuff broke")
@@ -255,7 +255,7 @@ Example of changing one of these variables:
 ```go
 package main
 
-import "github.com/Matt-Gleich/lumber"
+import "github.com/gleich/lumber"
 
 func main() {
     lumber.ColoredOutput = false
@@ -269,13 +269,13 @@ All normal log functions have a twin function that accepts a custom time. All of
 
 ## 🙌 Contributing
 
-Before contributing please read the [CONTRIBUTING.md file](https://github.com/Matt-Gleich/lumber/blob/master/CONTRIBUTING.md).
+Before contributing please read the [CONTRIBUTING.md file](https://github.com/gleich/lumber/blob/master/CONTRIBUTING.md).
 
 <!-- DO NOT REMOVE - contributor_list:start -->
 
 ## 👥 Contributors
 
-- **[@Matt-Gleich](https://github.com/Matt-Gleich)**
+- **[@gleich](https://github.com/gleich)**
 
 - **[@ImgBotApp](https://github.com/ImgBotApp)**
 

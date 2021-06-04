@@ -1,4 +1,4 @@
-module github.com/Matt-Gleich/lumber
+module github.com/gleich/lumber
 
 go 1.16
 
