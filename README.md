@@ -161,7 +161,9 @@ import (
 func main() {
     fName := "invisible-file.txt"
     _, err := ioutil.ReadFile(fName)
-    lumber.Error(err, "Failed to read from", fName)
+    if err != nil {
+        lumber.Error(err, "Failed to read from", fName)
+    }
 }
 ```
 
@@ -207,7 +209,9 @@ import (
 func main() {
     fName := "invisible-file.txt"
     _, err := ioutil.ReadFile(fName)
-    lumber.Fatal(err, "Failed to read from", fName)
+    if err != nil {
+        lumber.Fatal(err, "Failed to read from", fName)
+    }
 }
 ```
 
