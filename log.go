@@ -50,10 +50,12 @@ func logNormal(stat status, t time.Time, ctx ...interface{}) {
 func logError(stat status, t time.Time, err error, ctx ...interface{}) {
 	var out string
 
-	if err == nil || !ShowStack {
+	if err == nil {
 		out = format(stat, t, separateWithSpaces(ctx...))
-	} else {
+	} else if ShowStack {
 		out = format(stat, t, fmt.Sprintf("%v\n\n--- Stack Trace ---\n%+v", separateWithSpaces(ctx...), errors.WithStack(err)))
+	} else {
+		out = format(stat, t, separateWithSpaces(ctx...)+"\n\n"+err.Error())
 	}
 
 	errLogger.Println(out)
