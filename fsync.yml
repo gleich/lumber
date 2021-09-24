@@ -13,8 +13,6 @@ replace:
   - before: project_author_full_name
     after: Matthew Gleich
 files:
-  - path: .gitignore
-    source: https://github.com/gleich/go_template/blob/master/.gitignore
   - path: LICENSE.md
     source: https://github.com/gleich/gleich/blob/master/standard_documents/licenses/MIT_LICENSE.md
   - path: CONTRIBUTING.md
