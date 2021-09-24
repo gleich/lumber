@@ -19,6 +19,8 @@ var (
 	ExitStatus = 1
 	// If stack traces should be included
 	ShowStack = true
+	// Timezone for the time to be outputted in
+	Timezone = time.UTC
 
 	// Normal logger for Debug, Success, Warning, and Info
 	normalLogger = log.New(NormalOut, "", 0)
@@ -45,16 +47,18 @@ func logNormal(stat string, t time.Time, ctx ...interface{}) {
 func logError(stat string, t time.Time, err error, ctx ...interface{}) {
 	var out string
 
-	if ShowStack {
+	if ShowStack && err != nil {
 		out = format(
 			stat,
 			t,
 			fmt.Sprintf(
-				"%v\n\n--- Stack Trace ---\n%+v",
+				"%v\n--- Stack Trace ---\n%+v",
 				separateWithSpaces(ctx...),
 				errors.WithStack(err),
 			),
 		)
+	} else if err == nil {
+		out = format(stat, t, separateWithSpaces(ctx...))
 	} else {
 		out = format(stat, t, separateWithSpaces(ctx...)+"\n\n"+err.Error())
 	}

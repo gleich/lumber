@@ -18,9 +18,10 @@ func format(stat string, t time.Time, message string) string {
 	if MultiLine {
 		template = "%v | %v\n%v\n"
 	}
+	timeInLoc := t.In(Timezone)
 	out := fmt.Sprintf(template,
 		applyColor(stat, string(stat)),
-		t.Format("Mon Jan 2 15:04:05 MST 2006"),
+		timeInLoc.Format("Mon Jan 2 15:04:05 MST 2006"),
 		message)
 
 	if !Padding {
