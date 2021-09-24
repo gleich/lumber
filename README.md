@@ -2,9 +2,9 @@
 
 <div align="center">
     <h1>🪵 lumber 🪵</h1>
-    <a href="https://pkg.go.dev/github.com/gleich/lumber/v2"><img alt="Godoc Reference" src="https://godoc.org/github.com/gleich/lumber/v2?status.svg"></a>
-    <img alt="test workflow result" src="https://github.com/gleich/lumber/v2/v2workflows/test/badge.svg">
-    <img alt="lint workflow result" src="https://github.com/gleich/lumber/v2/v2workflows/lint/badge.svg">
+    <a href="https://pkg.go.dev/github.com/gleich/lumber/v2"><img alt="Godoc Reference" src="https://godoc.org/github.com/gleich/lumber?status.svg"></a>
+    <img alt="test workflow result" src="https://github.com/gleich/lumber/workflows/test/badge.svg">
+    <img alt="lint workflow result" src="https://github.com/gleich/lumber/workflows/lint/badge.svg">
     <br/>
     <img alt="GitHub go.mod Go version" src="https://img.shields.io/github/go-mod/go-version/gleich/lumber">
     <img alt="Golang report card" src ="https://goreportcard.com/badge/github.com/gleich/lumber/v2">
