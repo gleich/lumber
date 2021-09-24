@@ -25,6 +25,7 @@
   - [`lumber.Fatal()`](#lumberfatal)
   - [`lumber.FatalMsg()`](#lumberfatalmsg)
 - [⚙️ Customization](#️-customization)
+- [✨ Examples](#-examples)
 - [🙌 Contributing](#-contributing)
 - [👥 Contributors](#-contributors)
 
@@ -266,6 +267,10 @@ func main() {
     lumber.Debug("See, no color!")
 }
 ```
+
+# ✨ Examples
+
+See some examples in the [examples/](examples/) folder! Just run them using `go run main.go`.
 
 ## 🙌 Contributing
 
