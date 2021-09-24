@@ -1,6 +1,6 @@
 package main
 
-import "github.com/gleich/lumber"
+import "github.com/gleich/lumber/v2"
 
 func main() {
 	msg := "Hello World!"

@@ -1,4 +1,4 @@
-module github.com/gleich/lumber
+module github.com/gleich/lumber/v2
 
 go 1.17
 

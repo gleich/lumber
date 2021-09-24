@@ -2,12 +2,12 @@
 
 <div align="center">
     <h1>🪵 lumber 🪵</h1>
-    <a href="https://pkg.go.dev/github.com/gleich/lumber"><img alt="Godoc Reference" src="https://godoc.org/github.com/gleich/lumber?status.svg"></a>
-    <img alt="test workflow result" src="https://github.com/gleich/lumber/workflows/test/badge.svg">
-    <img alt="lint workflow result" src="https://github.com/gleich/lumber/workflows/lint/badge.svg">
+    <a href="https://pkg.go.dev/github.com/gleich/lumber/v2"><img alt="Godoc Reference" src="https://godoc.org/github.com/gleich/lumber/v2?status.svg"></a>
+    <img alt="test workflow result" src="https://github.com/gleich/lumber/v2/v2workflows/test/badge.svg">
+    <img alt="lint workflow result" src="https://github.com/gleich/lumber/v2/v2workflows/lint/badge.svg">
     <br/>
     <img alt="GitHub go.mod Go version" src="https://img.shields.io/github/go-mod/go-version/gleich/lumber">
-    <img alt="Golang report card" src ="https://goreportcard.com/badge/github.com/gleich/lumber">
+    <img alt="Golang report card" src ="https://goreportcard.com/badge/github.com/gleich/lumber/v2">
     <br/>
     <br/>
     <i>A dead simple, pretty, and feature-rich logger for golang</i>
@@ -39,7 +39,7 @@ go get -u github.com/gleich/lumber/v2
 
 ## 🌲 Logging Functions
 
-### [`lumber.Success()`](https://pkg.go.dev/github.com/gleich/lumber#Success)
+### [`lumber.Success()`](https://pkg.go.dev/github.com/gleich/lumber/v2#Success)
 
 Output a success log.
 
@@ -51,7 +51,7 @@ package main
 import (
     "time"
 
-    "github.com/gleich/lumber"
+    "github.com/gleich/lumber/v2"
 )
 
 func main() {
@@ -65,7 +65,7 @@ Outputs:
 
 ![success output](images/success.png)
 
-### [`lumber.Info()`](https://pkg.go.dev/github.com/gleich/lumber#Info)
+### [`lumber.Info()`](https://pkg.go.dev/github.com/gleich/lumber/v2#Info)
 
 Output an info log.
 
@@ -77,7 +77,7 @@ package main
 import (
     "time"
 
-    "github.com/gleich/lumber"
+    "github.com/gleich/lumber/v2"
 )
 
 func main() {
@@ -91,7 +91,7 @@ Outputs:
 
 ![info output](images/info.png)
 
-### [`lumber.Debug()`](https://pkg.go.dev/github.com/gleich/lumber#Debug)
+### [`lumber.Debug()`](https://pkg.go.dev/github.com/gleich/lumber/v2#Debug)
 
 Output a debug log.
 
@@ -103,7 +103,7 @@ package main
 import (
     "os"
 
-    "github.com/gleich/lumber"
+    "github.com/gleich/lumber/v2"
 )
 
 func main() {
@@ -116,7 +116,7 @@ Outputs:
 
 ![debug output](images/debug.png)
 
-### [`lumber.Warning()`](https://pkg.go.dev/github.com/gleich/lumber#Warning)
+### [`lumber.Warning()`](https://pkg.go.dev/github.com/gleich/lumber/v2#Warning)
 
 Output a warning log.
 
@@ -128,7 +128,7 @@ package main
 import (
     "time"
 
-    "github.com/gleich/lumber"
+    "github.com/gleich/lumber/v2"
 )
 
 func main() {
@@ -143,7 +143,7 @@ Outputs:
 
 ![warning output](images/warning.png)
 
-### [`lumber.Error()`](https://pkg.go.dev/github.com/gleich/lumber#Error)
+### [`lumber.Error()`](https://pkg.go.dev/github.com/gleich/lumber/v2#Error)
 
 Output an error log with a stack trace.
 
@@ -155,7 +155,7 @@ package main
 import (
     "os"
 
-    "github.com/gleich/lumber"
+    "github.com/gleich/lumber/v2"
 )
 
 func main() {
@@ -171,7 +171,7 @@ Outputs:
 
 ![error output](images/error.png)
 
-### [`lumber.ErrorMsg()`](https://pkg.go.dev/github.com/gleich/lumber#ErrorMsg)
+### [`lumber.ErrorMsg()`](https://pkg.go.dev/github.com/gleich/lumber/v2#ErrorMsg)
 
 Output an error message.
 
@@ -180,7 +180,7 @@ Demo:
 ```go
 package main
 
-import "github.com/gleich/lumber"
+import "github.com/gleich/lumber/v2"
 
 func main() {
     lumber.ErrorMsg("Ahhh stuff broke")
@@ -191,7 +191,7 @@ Outputs:
 
 ![errorMsg output](images/errorMsg.png)
 
-### [`lumber.Fatal()`](https://pkg.go.dev/github.com/gleich/lumber#Fatal)
+### [`lumber.Fatal()`](https://pkg.go.dev/github.com/gleich/lumber/v2#Fatal)
 
 Output a fatal log with a stack trace.
 
@@ -203,7 +203,7 @@ package main
 import (
     "os"
 
-    "github.com/gleich/lumber"
+    "github.com/gleich/lumber/v2"
 )
 
 func main() {
@@ -219,7 +219,7 @@ Outputs:
 
 ![fatal output](images/fatal.png)
 
-### [`lumber.FatalMsg()`](https://pkg.go.dev/github.com/gleich/lumber#FatalMsg)
+### [`lumber.FatalMsg()`](https://pkg.go.dev/github.com/gleich/lumber/v2#FatalMsg)
 
 Output a fatal message.
 
@@ -228,7 +228,7 @@ Demo:
 ```go
 package main
 
-import "github.com/gleich/lumber"
+import "github.com/gleich/lumber/v2"
 
 func main() {
     lumber.FatalMsg("Ahhh stuff broke")
@@ -260,7 +260,7 @@ Example of changing one of these variables:
 ```go
 package main
 
-import "github.com/gleich/lumber"
+import "github.com/gleich/lumber/v2"
 
 func main() {
     lumber.ColoredOutput = false
@@ -274,7 +274,7 @@ See some examples in the [examples/](examples/) folder! Just run them using `go 
 
 ## 🙌 Contributing
 
-Before contributing please read the [CONTRIBUTING.md file](https://github.com/gleich/lumber/blob/master/CONTRIBUTING.md).
+Before contributing please read the [CONTRIBUTING.md file](https://github.com/gleich/lumber/v2/v2blob/master/CONTRIBUTING.md).
 
 <!-- DO NOT REMOVE - contributor_list:start -->
 

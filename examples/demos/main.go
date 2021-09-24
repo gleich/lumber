@@ -5,7 +5,7 @@ import (
 	"os"
 	"time"
 
-	"github.com/gleich/lumber"
+	"github.com/gleich/lumber/v2"
 )
 
 func main() {
