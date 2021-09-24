@@ -36,8 +36,8 @@ func has256ColorSupport() bool {
 }
 
 // Apply the color for a given status to a string
-func applyColor(stat status, msg string) string {
-	trueColorMap := map[status]*truecolor.Message{
+func applyColor(stat string, msg string) string {
+	trueColorMap := map[string]*truecolor.Message{
 		successStatus: truecolor.White().Background(0, 176, 99),    // Green
 		fatalStatus:   truecolor.White().Background(255, 0, 0),     // Red
 		errorStatus:   truecolor.White().Background(255, 0, 0),     // Red
@@ -46,7 +46,7 @@ func applyColor(stat status, msg string) string {
 		debugStatus:   truecolor.White().Background(0, 97, 255),    // Blue
 	}
 
-	basicColorMap := map[status][]color.Attribute{
+	basicColorMap := map[string][]color.Attribute{
 		successStatus: {color.BgGreen, color.FgWhite},  // Green
 		fatalStatus:   {color.BgRed, color.FgWhite},    // Red
 		errorStatus:   {color.BgRed, color.FgWhite},    // Red

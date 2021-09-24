@@ -14,8 +14,6 @@ var (
 	NormalOut = os.Stdout
 	// The output file for Fatal and Error
 	ErrOut = os.Stderr
-	// If errors should automatically be checked for a non-nil value
-	ErrNilCheck = true
 
 	// Fatal exit code
 	ExitStatus = 1
@@ -28,32 +26,35 @@ var (
 	errLogger = log.New(ErrOut, "", 0)
 )
 
-// Log status
-type status string
-
 const (
-	successStatus status = "   SUCCESS   "
-	fatalStatus   status = "    FATAL    "
-	errorStatus   status = "    ERROR    "
-	warningStatus status = "   WARNING   "
-	infoStatus    status = "    INFO     "
-	debugStatus   status = "    DEBUG    "
+	successStatus string = "   SUCCESS   "
+	fatalStatus   string = "    FATAL    "
+	errorStatus   string = "    ERROR    "
+	warningStatus string = "   WARNING   "
+	infoStatus    string = "    INFO     "
+	debugStatus   string = "    DEBUG    "
 )
 
 // Log a normal status (Debug, Success, Warning, and Info)
-func logNormal(stat status, t time.Time, ctx ...interface{}) {
+func logNormal(stat string, t time.Time, ctx ...interface{}) {
 	out := format(stat, t, separateWithSpaces(ctx...))
 	normalLogger.Println(out)
 }
 
 // Log a normal status (Debug, Success, Warning, and Info)
-func logError(stat status, t time.Time, err error, ctx ...interface{}) {
+func logError(stat string, t time.Time, err error, ctx ...interface{}) {
 	var out string
 
-	if err == nil {
-		out = format(stat, t, separateWithSpaces(ctx...))
-	} else if ShowStack {
-		out = format(stat, t, fmt.Sprintf("%v\n\n--- Stack Trace ---\n%+v", separateWithSpaces(ctx...), errors.WithStack(err)))
+	if ShowStack {
+		out = format(
+			stat,
+			t,
+			fmt.Sprintf(
+				"%v\n\n--- Stack Trace ---\n%+v",
+				separateWithSpaces(ctx...),
+				errors.WithStack(err),
+			),
+		)
 	} else {
 		out = format(stat, t, separateWithSpaces(ctx...)+"\n\n"+err.Error())
 	}
@@ -83,9 +84,7 @@ func Warning(ctx ...interface{}) {
 
 // Output an error log
 func Error(err error, ctx ...interface{}) {
-	if !ErrNilCheck || err != nil {
-		logError(errorStatus, time.Now(), err, ctx...)
-	}
+	logError(errorStatus, time.Now(), err, ctx...)
 }
 
 // Output an error log with no actual error value
@@ -95,10 +94,8 @@ func ErrorMsg(ctx ...interface{}) {
 
 // Output a fatal log
 func Fatal(err error, ctx ...interface{}) {
-	if !ErrNilCheck || err != nil {
-		logError(fatalStatus, time.Now(), err, ctx...)
-		os.Exit(ExitStatus)
-	}
+	logError(fatalStatus, time.Now(), err, ctx...)
+	os.Exit(ExitStatus)
 }
 
 // Output a fatal log with no actual error value
