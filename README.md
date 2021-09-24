@@ -15,7 +15,7 @@
 <hr>
 
 - [🚀 Install](#-install)
-- [🌲 Common Logs](#-common-logs)
+- [🌲 Logging Functions](#-logging-functions)
   - [`lumber.Success()`](#lumbersuccess)
   - [`lumber.Info()`](#lumberinfo)
   - [`lumber.Debug()`](#lumberdebug)
@@ -25,7 +25,6 @@
   - [`lumber.Fatal()`](#lumberfatal)
   - [`lumber.FatalMsg()`](#lumberfatalmsg)
 - [⚙️ Customization](#️-customization)
-- [⏰ Changing the log time](#-changing-the-log-time)
 - [🙌 Contributing](#-contributing)
 - [👥 Contributors](#-contributors)
 
@@ -37,7 +36,7 @@ Simply run the following from your project root:
 go get -u github.com/gleich/lumber
 ```
 
-## 🌲 Common Logs
+## 🌲 Logging Functions
 
 ### [`lumber.Success()`](https://pkg.go.dev/github.com/gleich/lumber#Success)
 
@@ -83,7 +82,7 @@ import (
 func main() {
     lumber.Info("Getting the current year")
     now := time.Now()
-    lumber.Info("Current year:", now.Year())
+    lumber.Info("Current year is", now.Year())
 }
 ```
 
@@ -145,7 +144,7 @@ Outputs:
 
 ### [`lumber.Error()`](https://pkg.go.dev/github.com/gleich/lumber#Error)
 
-Output an error log. If `err != nil` the error will automatically get logged to the console. This auto-check can be turned off in the [customization section](#️-customization).
+Output an error log with a stack trace.
 
 Demo:
 
@@ -153,16 +152,16 @@ Demo:
 package main
 
 import (
-    "io/ioutil"
+    "os"
 
     "github.com/gleich/lumber"
 )
 
 func main() {
-    fName := "invisible-file.txt"
-    _, err := ioutil.ReadFile(fName)
+    fname := "invisible-file.txt"
+    _, err := os.ReadFile(fName)
     if err != nil {
-        lumber.Error(err, "Failed to read from", fName)
+        lumber.Error(err, "Failed to read from", fname)
     }
 }
 ```
@@ -193,7 +192,7 @@ Outputs:
 
 ### [`lumber.Fatal()`](https://pkg.go.dev/github.com/gleich/lumber#Fatal)
 
-Output a fatal log. If `err != nil` the error will automatically get logged to the console and the program will exit (default code is 1). This auto-check can be turned off in the [customization section](#️-customization).
+Output a fatal log with a stack trace.
 
 Demo:
 
@@ -201,14 +200,14 @@ Demo:
 package main
 
 import (
-    "io/ioutil"
+    "os"
 
     "github.com/gleich/lumber"
 )
 
 func main() {
     fName := "invisible-file.txt"
-    _, err := ioutil.ReadFile(fName)
+    _, err := os.ReadFile(fName)
     if err != nil {
         lumber.Fatal(err, "Failed to read from", fName)
     }
@@ -243,16 +242,17 @@ Outputs:
 
 You can customize lumber by changing any of its global variables:
 
-| **Variable Name**      | **Description**                                                                      | **Default Value**      | **Type**   |
-| ---------------------- | ------------------------------------------------------------------------------------ | ---------------------- | ---------- |
-| `lumber.NormalOut`     | The output file for Debug, Success, Warning, and Info                                | `os.Stdout`            | `*os.File` |
-| `lumber.ErrOut`        | The output file for Fatal and Error                                                  | `os.Stderr`            | `*os.File` |
-| `lumber.ErrNilCheck`   | If errors should automatically be checked for a non-nil value                        | `true`                 | `bool`     |
-| `lumber.ExitStatus`    | Fatal exit code                                                                      | `1`                    | `int`      |
-| `lumber.Padding`       | If the log should have an extra new line at the bottom                               | `true`                 | `bool`     |
-| `lumber.ColoredOutput` | If the output should have color                                                      | `true`                 | `bool`     |
-| `lumber.TrueColor`     | If the output colors should be true colors. Default is true if terminal supports it. | `has256ColorSupport()` | `bool`     |
-| `lumber.ShowStack`     | If stack traces should be shown                                                      | `true`                 | `bool`     |
+| **Variable Name**      | **Description**                                                                      | **Default Value**      | **Type**         |
+| ---------------------- | ------------------------------------------------------------------------------------ | ---------------------- | ---------------- |
+| `lumber.NormalOut`     | The output file for Debug, Success, Warning, and Info                                | `os.Stdout`            | `*os.File`       |
+| `lumber.ErrOut`        | The output file for Fatal and Error                                                  | `os.Stderr`            | `*os.File`       |
+| `lumber.ExitStatus`    | Fatal exit code                                                                      | `1`                    | `int`            |
+| `lumber.Padding`       | If the log should have an extra new line at the bottom                               | `false`                | `bool`           |
+| `lumber.ColoredOutput` | If the output should have color                                                      | `true`                 | `bool`           |
+| `lumber.TrueColor`     | If the output colors should be true colors. Default is true if terminal supports it. | `has256ColorSupport()` | `bool`           |
+| `lumber.ShowStack`     | If stack traces should be shown                                                      | `true`                 | `bool`           |
+| `lumber.Multiline`     | If the should should be spread out to more than one line                             | `false`                | `bool`           |
+| `lumber.Timezone`      | Timezone you want the times to be logged in                                          | `time.UTC`             | `*time.Location` |
 
 Example of changing one of these variables:
 
@@ -266,10 +266,6 @@ func main() {
     lumber.Debug("See, no color!")
 }
 ```
-
-## ⏰ Changing the log time
-
-All normal log functions have a twin function that accepts a custom time. All of these functions are suffixed with `WithTime`.
 
 ## 🙌 Contributing
 

@@ -16,7 +16,7 @@ var (
 	ErrOut = os.Stderr
 
 	// Fatal exit code
-	ExitStatus = 1
+	ExitCode = 1
 	// If stack traces should be included
 	ShowStack = true
 	// Timezone for the time to be outputted in
@@ -99,11 +99,11 @@ func ErrorMsg(ctx ...interface{}) {
 // Output a fatal log
 func Fatal(err error, ctx ...interface{}) {
 	logError(fatalStatus, time.Now(), err, ctx...)
-	os.Exit(ExitStatus)
+	os.Exit(ExitCode)
 }
 
 // Output a fatal log with no actual error value
 func FatalMsg(ctx ...interface{}) {
 	logError(fatalStatus, time.Now(), nil, ctx...)
-	os.Exit(ExitStatus)
+	os.Exit(ExitCode)
 }
