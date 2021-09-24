@@ -10,7 +10,7 @@
     <img alt="Golang report card" src ="https://goreportcard.com/badge/github.com/gleich/lumber">
     <br/>
     <br/>
-    <i>A feature-rich and easy to use logger for golang</i>
+    <i>A dead simple, pretty, and feature-rich logger for golang</i>
 </div>
 <hr>
 
@@ -33,7 +33,7 @@
 Simply run the following from your project root:
 
 ```bash
-go get -u github.com/gleich/lumber
+go get -u github.com/gleich/lumber/v2
 ```
 
 ## 🌲 Logging Functions
