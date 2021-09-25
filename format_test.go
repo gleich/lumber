@@ -110,24 +110,14 @@ func TestFormat(t *testing.T) {
 		assert.Equal(
 			t,
 			test.expectedSinglelineOutputTrueColor,
-			format(
-				NewCustomLogger(),
-				test.stat,
-				testTime,
-				test.msg,
-			),
+			format(log, test.stat, testTime, test.msg),
 		)
 
 		log.TrueColor = false
 		assert.Equal(
 			t,
 			test.expectedSinglelineOutputBasicColor,
-			format(
-				NewCustomLogger(),
-				test.stat,
-				testTime,
-				test.msg,
-			),
+			format(log, test.stat, testTime, test.msg),
 		)
 
 		log.Multiline = true
@@ -136,10 +126,7 @@ func TestFormat(t *testing.T) {
 			t,
 			test.expectedMultilineOutputTrueColor,
 			format(
-				NewCustomLogger(),
-				test.stat,
-				testTime,
-				test.msg,
+				log, test.stat, testTime, test.msg,
 			),
 		)
 
@@ -148,12 +135,7 @@ func TestFormat(t *testing.T) {
 		assert.Equal(
 			t,
 			test.expectedMultilineOutputBasicColor,
-			format(
-				NewCustomLogger(),
-				test.stat,
-				testTime,
-				test.msg,
-			),
+			format(log, test.stat, testTime, test.msg),
 		)
 	}
 }
