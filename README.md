@@ -241,21 +241,7 @@ Outputs:
 
 ## ⚙️ Customization
 
-You can customize lumber by changing any of its global variables:
-
-| **Variable Name**      | **Description**                                                                      | **Default Value**      | **Type**         |
-| ---------------------- | ------------------------------------------------------------------------------------ | ---------------------- | ---------------- |
-| `lumber.NormalOut`     | The output file for Debug, Success, Warning, and Info                                | `os.Stdout`            | `*os.File`       |
-| `lumber.ErrOut`        | The output file for Fatal and Error                                                  | `os.Stderr`            | `*os.File`       |
-| `lumber.ExitStatus`    | Fatal exit code                                                                      | `1`                    | `int`            |
-| `lumber.Padding`       | If the log should have an extra new line at the bottom                               | `false`                | `bool`           |
-| `lumber.ColoredOutput` | If the output should have color                                                      | `true`                 | `bool`           |
-| `lumber.TrueColor`     | If the output colors should be true colors. Default is true if terminal supports it. | `has256ColorSupport()` | `bool`           |
-| `lumber.ShowStack`     | If stack traces should be shown                                                      | `true`                 | `bool`           |
-| `lumber.Multiline`     | If the should should be spread out to more than one line                             | `false`                | `bool`           |
-| `lumber.Timezone`      | Timezone you want the times to be logged in                                          | `time.UTC`             | `*time.Location` |
-
-Example of changing one of these variables:
+You can customize lumber by creating a custom logger and changing values on it. You then call the log functions on the custom logger. Below is an example of this.
 
 ```go
 package main
@@ -263,10 +249,27 @@ package main
 import "github.com/gleich/lumber/v2"
 
 func main() {
-    lumber.ColoredOutput = false
-    lumber.Debug("See, no color!")
+    log := lumber.NewCustomLogger()
+    log.ColoredOutput = false
+    log.ExitCode = 2
+
+    log.Success("Calling from custom logger!")
 }
 ```
+
+Here are all the variables that can be changed:
+
+| **Variable Name** | **Description**                                                                      | **Default Value**      | **Type**         |
+| ----------------- | ------------------------------------------------------------------------------------ | ---------------------- | ---------------- |
+| `NormalOut`       | The output file for Debug, Success, Warning, and Info                                | `os.Stdout`            | `*os.File`       |
+| `ErrOut`          | The output file for Fatal and Error                                                  | `os.Stderr`            | `*os.File`       |
+| `ExitCode`        | Fatal exit code                                                                      | `1`                    | `int`            |
+| `Padding`         | If the log should have an extra new line at the bottom                               | `false`                | `bool`           |
+| `ColoredOutput`   | If the output should have color                                                      | `true`                 | `bool`           |
+| `TrueColor`       | If the output colors should be true colors. Default is true if terminal supports it. | `has256ColorSupport()` | `bool`           |
+| `ShowStack`       | If stack traces should be shown                                                      | `true`                 | `bool`           |
+| `Multiline`       | If the should should be spread out to more than one line                             | `false`                | `bool`           |
+| `Timezone`        | Timezone you want the times to be logged in                                          | `time.UTC`             | `*time.Location` |
 
 # ✨ Examples
 
