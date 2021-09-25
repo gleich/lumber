@@ -8,15 +8,16 @@ import (
 )
 
 func main() {
-	lumber.Timezone = time.Local
-	lumber.MultiLine = true
-	lumber.TrueColor = false
+	log := lumber.NewCustomLogger()
+	log.Timezone = time.Local
+	log.Multiline = true
+	log.TrueColor = true
 
 	randCap := 100
-	lumber.Debug(rand.Intn(randCap))
-	lumber.Info(rand.Intn(randCap))
-	lumber.Success(rand.Intn(randCap))
-	lumber.Warning(rand.Intn(randCap))
-	lumber.ErrorMsg(rand.Intn(randCap))
-	lumber.FatalMsg(rand.Intn(randCap))
+	log.Debug(rand.Intn(randCap))
+	log.Info(rand.Intn(randCap))
+	log.Success(rand.Intn(randCap))
+	log.Warning(rand.Intn(randCap))
+	log.ErrorMsg(rand.Intn(randCap))
+	log.FatalMsg(rand.Intn(randCap))
 }

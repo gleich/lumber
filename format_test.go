@@ -102,44 +102,59 @@ func TestFormat(t *testing.T) {
 
 	testTime := time.Date(0, 0, 0, 0, 0, 0, 0, time.UTC)
 	for _, test := range tt {
-		Padding = !test.noPadding
-		ColoredOutput = !test.noColor
+		log := NewCustomLogger()
+		log.Padding = !test.noPadding
+		log.ColoredOutput = !test.noColor
 
-		MultiLine = false
-
-		TrueColor = true
+		log.TrueColor = true
 		assert.Equal(
 			t,
 			test.expectedSinglelineOutputTrueColor,
-			format(test.stat, testTime, test.msg),
+			format(
+				NewCustomLogger(),
+				test.stat,
+				testTime,
+				test.msg,
+			),
 		)
 
-		TrueColor = false
+		log.TrueColor = false
 		assert.Equal(
 			t,
 			test.expectedSinglelineOutputBasicColor,
-			format(test.stat, testTime, test.msg),
+			format(
+				NewCustomLogger(),
+				test.stat,
+				testTime,
+				test.msg,
+			),
 		)
 
-		MultiLine = true
-
-		TrueColor = true
+		log.Multiline = true
+		log.TrueColor = true
 		assert.Equal(
 			t,
 			test.expectedMultilineOutputTrueColor,
-			format(test.stat, testTime, test.msg),
+			format(
+				NewCustomLogger(),
+				test.stat,
+				testTime,
+				test.msg,
+			),
 		)
 
-		TrueColor = false
+		log.TrueColor = false
+		log.Multiline = true
 		assert.Equal(
 			t,
 			test.expectedMultilineOutputBasicColor,
-			format(test.stat, testTime, test.msg),
+			format(
+				NewCustomLogger(),
+				test.stat,
+				testTime,
+				test.msg,
+			),
 		)
-
-		TrueColor = true
-		ColoredOutput = true
-		Padding = true
 	}
 }
 

@@ -9,20 +9,6 @@ import (
 	"github.com/pkg/errors"
 )
 
-var (
-	// The output file for Debug, Success, Warning, and Info
-	NormalOut = os.Stdout
-	// The output file for Fatal and Error
-	ErrOut = os.Stderr
-
-	// Fatal exit code
-	ExitCode = 1
-	// If stack traces should be included
-	ShowStack = true
-	// Timezone for the time to be outputted in
-	Timezone = time.UTC
-)
-
 const (
 	successStatus string = "   SUCCESS   "
 	fatalStatus   string = "    FATAL    "
@@ -32,18 +18,22 @@ const (
 	debugStatus   string = "    DEBUG    "
 )
 
+// The default logger used by default logs
+var defaultLogger = NewCustomLogger()
+
 // Log a normal status (Debug, Success, Warning, and Info)
-func logNormal(stat string, t time.Time, ctx ...interface{}) {
-	out := format(stat, t, separateWithSpaces(ctx...))
-	log.New(NormalOut, "", 0).Println(out)
+func logNormal(config Logger, stat string, t time.Time, ctx ...interface{}) {
+	out := format(config, stat, t, separateWithSpaces(ctx...))
+	log.New(config.NormalOut, "", 0).Println(out)
 }
 
 // Log a normal status (Debug, Success, Warning, and Info)
-func logError(stat string, t time.Time, err error, ctx ...interface{}) {
+func logError(config Logger, stat string, t time.Time, err error, ctx ...interface{}) {
 	var out string
 
-	if ShowStack && err != nil {
+	if config.ShowStack && err != nil {
 		out = format(
+			config,
 			stat,
 			t,
 			fmt.Sprintf(
@@ -53,52 +43,52 @@ func logError(stat string, t time.Time, err error, ctx ...interface{}) {
 			),
 		)
 	} else if err == nil {
-		out = format(stat, t, separateWithSpaces(ctx...))
+		out = format(config, stat, t, separateWithSpaces(ctx...))
 	} else {
-		out = format(stat, t, separateWithSpaces(ctx...)+"\n\n"+err.Error())
+		out = format(config, stat, t, separateWithSpaces(ctx...)+"\n\n"+err.Error())
 	}
 
-	log.New(ErrOut, "", 0).Println(out)
+	log.New(config.ErrOut, "", 0).Println(out)
 }
 
 // Output a success log
 func Success(ctx ...interface{}) {
-	logNormal(successStatus, time.Now(), ctx...)
+	logNormal(defaultLogger, successStatus, time.Now(), ctx...)
 }
 
 // Output an info log
 func Info(ctx ...interface{}) {
-	logNormal(infoStatus, time.Now(), ctx...)
+	logNormal(defaultLogger, infoStatus, time.Now(), ctx...)
 }
 
 // Output a debug log
 func Debug(ctx ...interface{}) {
-	logNormal(debugStatus, time.Now(), ctx...)
+	logNormal(defaultLogger, debugStatus, time.Now(), ctx...)
 }
 
 // Output a warning log
 func Warning(ctx ...interface{}) {
-	logNormal(warningStatus, time.Now(), ctx...)
+	logNormal(defaultLogger, warningStatus, time.Now(), ctx...)
 }
 
 // Output an error log
 func Error(err error, ctx ...interface{}) {
-	logError(errorStatus, time.Now(), err, ctx...)
+	logError(defaultLogger, errorStatus, time.Now(), err, ctx...)
 }
 
 // Output an error log with no actual error value
 func ErrorMsg(ctx ...interface{}) {
-	logError(errorStatus, time.Now(), nil, ctx...)
+	logError(defaultLogger, errorStatus, time.Now(), nil, ctx...)
 }
 
 // Output a fatal log
 func Fatal(err error, ctx ...interface{}) {
-	logError(fatalStatus, time.Now(), err, ctx...)
-	os.Exit(ExitCode)
+	logError(defaultLogger, fatalStatus, time.Now(), err, ctx...)
+	os.Exit(defaultLogger.ExitCode)
 }
 
 // Output a fatal log with no actual error value
 func FatalMsg(ctx ...interface{}) {
-	logError(fatalStatus, time.Now(), nil, ctx...)
-	os.Exit(ExitCode)
+	logError(defaultLogger, fatalStatus, time.Now(), nil, ctx...)
+	os.Exit(defaultLogger.ExitCode)
 }

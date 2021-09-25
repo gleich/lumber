@@ -8,14 +8,6 @@ import (
 	truecolor "github.com/wayneashleyberry/truecolor/pkg/color"
 )
 
-var (
-	// If the output should have color
-	ColoredOutput = true
-	// If the output should be true color or basic colors.
-	// Default is true if the terminal supports it
-	TrueColor = has256ColorSupport()
-)
-
 // Checking to see if the terminal has true color support
 func has256ColorSupport() bool {
 	envColor := os.Getenv("TERM")
@@ -36,7 +28,7 @@ func has256ColorSupport() bool {
 }
 
 // Apply the color for a given status to a string
-func applyColor(stat string, msg string) string {
+func applyColor(config Logger, stat string, msg string) string {
 	trueColorMap := map[string]*truecolor.Message{
 		successStatus: truecolor.White().Background(0, 176, 99),    // Green
 		fatalStatus:   truecolor.White().Background(255, 0, 0),     // Red
@@ -55,8 +47,8 @@ func applyColor(stat string, msg string) string {
 		debugStatus:   {color.BgBlue, color.FgWhite},   // Blue
 	}
 
-	if ColoredOutput {
-		if TrueColor {
+	if config.ColoredOutput {
+		if config.TrueColor {
 			return color.New(color.Bold).Sprint(trueColorMap[stat].Sprint(msg))
 		}
 		return color.New(basicColorMap[stat]...).Sprint(msg)
