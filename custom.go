@@ -1,7 +1,6 @@
 package lumber
 
 import (
-	"fmt"
 	"os"
 	"time"
 )
@@ -38,7 +37,6 @@ func NewCustomLogger() Logger {
 
 // Output a success log using a custom logger
 func (config Logger) Success(ctx ...interface{}) {
-	fmt.Printf("%#v\n", config)
 	logNormal(config, successStatus, time.Now(), ctx...)
 }
 
