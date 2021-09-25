@@ -21,11 +21,6 @@ var (
 	ShowStack = true
 	// Timezone for the time to be outputted in
 	Timezone = time.UTC
-
-	// Normal logger for Debug, Success, Warning, and Info
-	normalLogger = log.New(NormalOut, "", 0)
-	// Error logger for Fatal and Error
-	errLogger = log.New(ErrOut, "", 0)
 )
 
 const (
@@ -40,7 +35,7 @@ const (
 // Log a normal status (Debug, Success, Warning, and Info)
 func logNormal(stat string, t time.Time, ctx ...interface{}) {
 	out := format(stat, t, separateWithSpaces(ctx...))
-	normalLogger.Println(out)
+	log.New(NormalOut, "", 0).Println(out)
 }
 
 // Log a normal status (Debug, Success, Warning, and Info)
@@ -63,7 +58,7 @@ func logError(stat string, t time.Time, err error, ctx ...interface{}) {
 		out = format(stat, t, separateWithSpaces(ctx...)+"\n\n"+err.Error())
 	}
 
-	errLogger.Println(out)
+	log.New(ErrOut, "", 0).Println(out)
 }
 
 // Output a success log
