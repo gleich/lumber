@@ -28,6 +28,8 @@ func NewCustomLogger() Logger {
 	config := Logger{}
 	config.NormalOut = os.Stdout
 	config.ErrOut = os.Stderr
+	config.ExtraNormalOuts = []io.Writer{}
+	config.ExtraErrOuts = []io.Writer{}
 	config.ExitCode = 1
 	config.ShowStack = true
 	config.Timezone = time.UTC
