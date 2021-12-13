@@ -2,6 +2,7 @@ package lumber
 
 import (
 	"fmt"
+	"io"
 	"log"
 	"os"
 	"time"
@@ -24,7 +25,8 @@ var defaultLogger = NewCustomLogger()
 // Log a normal status (Debug, Success, Warning, and Info)
 func logNormal(config Logger, stat string, t time.Time, ctx ...interface{}) {
 	out := format(config, stat, t, separateWithSpaces(ctx...))
-	log.New(config.NormalOut, "", 0).Println(out)
+	writers := append([]io.Writer{config.NormalOut}, config.ExtraNormalOuts...)
+	log.New(io.MultiWriter(writers...), "", 0).Println(out)
 }
 
 // Log a normal status (Debug, Success, Warning, and Info)
@@ -48,7 +50,8 @@ func logError(config Logger, stat string, t time.Time, err error, ctx ...interfa
 		out = format(config, stat, t, separateWithSpaces(ctx...)+"\n\n"+err.Error())
 	}
 
-	log.New(config.ErrOut, "", 0).Println(out)
+	writers := append([]io.Writer{config.ErrOut}, config.ExtraErrOuts...)
+	log.New(io.MultiWriter(writers...), "", 0).Println(out)
 }
 
 // Output a success log

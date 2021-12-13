@@ -263,6 +263,8 @@ Here are all the variables that can be changed:
 | ----------------- | ------------------------------------------------------------------------------------ | ---------------------- | ---------------- |
 | `NormalOut`       | The output file for Debug, Success, Warning, and Info                                | `os.Stdout`            | `*os.File`       |
 | `ErrOut`          | The output file for Fatal and Error                                                  | `os.Stderr`            | `*os.File`       |
+| `ExtraNormalOuts` | Extra normal output destinations (e.g. outputting to a file as well as stdout)       | `[]io.Writer{}`        | `[]io.Writer`    |
+| `ExtraErrOuts`    | Extra error output destinations (e.g. outputting to a file as well as stderr)        | `[]io.Writer{}`        | `[]io.Writer`    |
 | `ExitCode`        | Fatal exit code                                                                      | `1`                    | `int`            |
 | `Padding`         | If the log should have an extra new line at the bottom                               | `false`                | `bool`           |
 | `ColoredOutput`   | If the output should have color                                                      | `true`                 | `bool`           |
