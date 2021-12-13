@@ -1,21 +1,24 @@
 package lumber
 
 import (
+	"io"
 	"os"
 	"time"
 )
 
 // Custom logger for lumber to use
 type Logger struct {
-	NormalOut     *os.File       // The output file for Debug, Success, Warning, and Info. Default is os.Stdout
-	ErrOut        *os.File       // The output file for Fatal, FatalMsg, Error, and ErrorMsg. Default is os.Stderr
-	ExitCode      int            // Fatal exit code. Default is 1
-	ShowStack     bool           // If stack trades should be included. Default is true
-	Timezone      *time.Location // Timezone for the time to be outputted in. Default is time.UTC
-	Padding       bool           // If the log should have an extra new line at the bottom. Default is true
-	Multiline     bool           // If the log should span multiple lines. Default is false
-	ColoredOutput bool           // If the output should have color. Default is true
-	TrueColor     bool           // If the output should be true color or basic colors. Default is true if the terminal supports it
+	NormalOut       *os.File       // The output file for Debug, Success, Warning, and Info. Default is os.Stdout
+	ErrOut          *os.File       // The output file for Fatal, FatalMsg, Error, and ErrorMsg. Default is os.Stderr
+	ExtraNormalOuts []io.Writer    // Extra normal output destinations (e.g. outputting to a file as well)
+	ExtraErrOuts    []io.Writer    // Extra error output destinations (e.g. outputting to a file as well)
+	ExitCode        int            // Fatal exit code. Default is 1
+	ShowStack       bool           // If stack trades should be included. Default is true
+	Timezone        *time.Location // Timezone for the time to be outputted in. Default is time.UTC
+	Padding         bool           // If the log should have an extra new line at the bottom. Default is true
+	Multiline       bool           // If the log should span multiple lines. Default is false
+	ColoredOutput   bool           // If the output should have color. Default is true
+	TrueColor       bool           // If the output should be true color or basic colors. Default is true if the terminal supports it
 }
 
 // Default value for true color
