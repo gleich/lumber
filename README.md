@@ -271,4 +271,4 @@ Here are all the variables that can be changed:
 
 # Examples
 
-See some examples in the [examples/](examples/) folder! Just run them using `go run main.go`.
+See some examples in the [\_examples/](_examples/) folder! Just run them using `go run main.go`.
