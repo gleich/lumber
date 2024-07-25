@@ -10,7 +10,7 @@
     <img alt="Golang report card" src ="https://goreportcard.com/badge/github.com/gleich/lumber/v2">
     <br/>
     <br/>
-    <i>A dead simple, pretty, and feature-rich logger for Golang</i>
+    <i>An easy to use & pretty logger for golang</i>
 </div>
 <hr>
 
