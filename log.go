@@ -84,13 +84,13 @@ func ErrorMsg(ctx ...interface{}) {
 	logError(defaultLogger, errorStatus, time.Now(), nil, ctx...)
 }
 
-// Output a fatal log
+// Output a fatal log. Will exit program after logging
 func Fatal(err error, ctx ...interface{}) {
 	logError(defaultLogger, fatalStatus, time.Now(), err, ctx...)
 	os.Exit(defaultLogger.ExitCode)
 }
 
-// Output a fatal log with no actual error value
+// Output a fatal log with no actual error value. Will exit program after logging
 func FatalMsg(ctx ...interface{}) {
 	logError(defaultLogger, fatalStatus, time.Now(), nil, ctx...)
 	os.Exit(defaultLogger.ExitCode)

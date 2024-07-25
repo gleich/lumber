@@ -1,7 +1,7 @@
 <!-- DO NOT REMOVE - contributor_list:data:start:["gleich", "ImgBotApp"]:end -->
 
 <div align="center">
-    <h1>🪵 lumber 🪵</h1>
+    <h1>lumber</h1>
     <a href="https://pkg.go.dev/github.com/gleich/lumber/v2"><img alt="Godoc Reference" src="https://godoc.org/github.com/gleich/lumber?status.svg"></a>
     <img alt="test workflow result" src="https://github.com/gleich/lumber/workflows/test/badge.svg">
     <img alt="lint workflow result" src="https://github.com/gleich/lumber/workflows/lint/badge.svg">
@@ -10,12 +10,12 @@
     <img alt="Golang report card" src ="https://goreportcard.com/badge/github.com/gleich/lumber/v2">
     <br/>
     <br/>
-    <i>A dead simple, pretty, and feature-rich logger for golang</i>
+    <i>A dead simple, pretty, and feature-rich logger for Golang</i>
 </div>
 <hr>
 
-- [🚀 Install](#-install)
-- [🌲 Logging Functions](#-logging-functions)
+- [Install](#-install)
+- [Logging Functions](#-logging-functions)
   - [`lumber.Success()`](#lumbersuccess)
   - [`lumber.Info()`](#lumberinfo)
   - [`lumber.Debug()`](#lumberdebug)
@@ -24,12 +24,10 @@
   - [`lumber.ErrorMsg()`](#lumbererrormsg)
   - [`lumber.Fatal()`](#lumberfatal)
   - [`lumber.FatalMsg()`](#lumberfatalmsg)
-- [⚙️ Customization](#️-customization)
-- [✨ Examples](#-examples)
-- [🙌 Contributing](#-contributing)
-- [👥 Contributors](#-contributors)
+- [Customization](#️-customization)
+- [Examples](#-examples)
 
-## 🚀 Install
+## Install
 
 Simply run the following from your project root:
 
@@ -37,7 +35,7 @@ Simply run the following from your project root:
 go get -u github.com/gleich/lumber/v2
 ```
 
-## 🌲 Logging Functions
+## Logging Functions
 
 ### [`lumber.Success()`](https://pkg.go.dev/github.com/gleich/lumber/v2#Success)
 
@@ -55,9 +53,9 @@ import (
 )
 
 func main() {
-    lumber.Success("Loaded up the program!")
+    lumber.Success("booted up the program!")
     time.Sleep(2 * time.Second)
-    lumber.Success("Waited 2 seconds!")
+    lumber.Success("waited 2 seconds!")
 }
 ```
 
@@ -239,7 +237,7 @@ Outputs:
 
 ![fatalMsg output](images/fatalMsg.png)
 
-## ⚙️ Customization
+## Customization
 
 You can customize lumber by creating a custom logger and changing values on it. You then call the log functions on the custom logger. Below is an example of this.
 
@@ -273,20 +271,6 @@ Here are all the variables that can be changed:
 | `Multiline`       | If the should should be spread out to more than one line                             | `false`                | `bool`           |
 | `Timezone`        | Timezone you want the times to be logged in                                          | `time.UTC`             | `*time.Location` |
 
-# ✨ Examples
+# Examples
 
 See some examples in the [examples/](examples/) folder! Just run them using `go run main.go`.
-
-## 🙌 Contributing
-
-Before contributing please read the [CONTRIBUTING.md file](https://github.com/gleich/lumber/v2/v2blob/master/CONTRIBUTING.md).
-
-<!-- DO NOT REMOVE - contributor_list:start -->
-
-## 👥 Contributors
-
-- **[@gleich](https://github.com/gleich)**
-
-- **[@ImgBotApp](https://github.com/ImgBotApp)**
-
-<!-- DO NOT REMOVE - contributor_list:end -->
