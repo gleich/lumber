@@ -70,13 +70,13 @@ func (config Logger) ErrorMsg(ctx ...interface{}) {
 	logError(config, errorStatus, time.Now(), nil, ctx...)
 }
 
-// Output a fatal log using a custom logger
+// Output a fatal log using a custom logger. Will exit program after logging
 func (config Logger) Fatal(err error, ctx ...interface{}) {
 	logError(config, fatalStatus, time.Now(), err, ctx...)
 	os.Exit(config.ExitCode)
 }
 
-// Output a fatal log with no actual error value using a custom logger
+// Output a fatal log with no actual error value using a custom logger. Will exit program after logging
 func (config Logger) FatalMsg(ctx ...interface{}) {
 	logError(config, fatalStatus, time.Now(), nil, ctx...)
 	os.Exit(config.ExitCode)
