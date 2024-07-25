@@ -1,6 +1,6 @@
 module github.com/gleich/lumber/v2
 
-go 1.17
+go 1.22
 
 require (
 	github.com/fatih/color v1.17.0
