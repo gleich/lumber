@@ -1,5 +1,3 @@
-<!-- DO NOT REMOVE - contributor_list:data:start:["gleich", "ImgBotApp"]:end -->
-
 <div align="center">
     <h1>lumber</h1>
     <a href="https://pkg.go.dev/github.com/gleich/lumber/v2"><img alt="Godoc Reference" src="https://godoc.org/github.com/gleich/lumber?status.svg"></a>
@@ -10,7 +8,7 @@
     <img alt="Golang report card" src ="https://goreportcard.com/badge/github.com/gleich/lumber/v2">
     <br/>
     <br/>
-    <i>An easy to use & pretty logger for golang</i>
+    <i>Easy to use & pretty logger for golang</i>
 </div>
 <hr>
 
