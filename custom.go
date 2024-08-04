@@ -21,23 +21,30 @@ type Logger struct {
 	TrueColor       bool           // If the output should be true color or basic colors. Default is true if the terminal supports it
 }
 
+var customLogger = NewCustomLogger()
+
 // Default value for true color
 var defaultTrueColor = has256ColorSupport()
 
 func NewCustomLogger() Logger {
-	config := Logger{}
-	config.NormalOut = os.Stdout
-	config.ErrOut = os.Stderr
-	config.ExtraNormalOuts = []io.Writer{}
-	config.ExtraErrOuts = []io.Writer{}
-	config.ExitCode = 1
-	config.ShowStack = true
-	config.Timezone = time.UTC
-	config.Padding = true
-	config.Multiline = false
-	config.ColoredOutput = true
-	config.TrueColor = defaultTrueColor
-	return config
+	return Logger{
+		NormalOut:       os.Stdout,
+		ErrOut:          os.Stderr,
+		ExtraNormalOuts: []io.Writer{},
+		ExtraErrOuts:    []io.Writer{},
+		ExitCode:        1,
+		ShowStack:       true,
+		Timezone:        time.UTC,
+		Padding:         true,
+		Multiline:       false,
+		ColoredOutput:   true,
+		TrueColor:       defaultTrueColor,
+	}
+}
+
+// Set the default logger used by lumber to a given custom logger.
+func SetLogger(new Logger) {
+	customLogger = new
 }
 
 // Output a success log using a custom logger
