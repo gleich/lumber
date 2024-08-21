@@ -1,11 +1,9 @@
 <div align="center">
     <h1>lumber</h1>
-    <a href="https://pkg.go.dev/github.com/gleich/lumber/v2"><img alt="Godoc Reference" src="https://godoc.org/github.com/gleich/lumber?status.svg"></a>
-    <img alt="test workflow result" src="https://github.com/gleich/lumber/workflows/test/badge.svg">
+    <a href="https://pkg.go.dev/github.com/gleich/lumber/v3"><img alt="Godoc Reference" src="https://godoc.org/github.com/gleich/lumber?status.svg"></a>
     <img alt="lint workflow result" src="https://github.com/gleich/lumber/workflows/lint/badge.svg">
-    <br/>
     <img alt="GitHub go.mod Go version" src="https://img.shields.io/github/go-mod/go-version/gleich/lumber">
-    <img alt="Golang report card" src ="https://goreportcard.com/badge/github.com/gleich/lumber/v2">
+    <img alt="Golang report card" src ="https://goreportcard.com/badge/github.com/gleich/lumber/v3">
     <br/>
     <br/>
     <i>Easy to use & pretty logger for golang</i>
@@ -14,7 +12,7 @@
 
 - [Install](#-install)
 - [Logging Functions](#-logging-functions)
-  - [`lumber.Success()`](#lumbersuccess)
+  - [`lumber.Done()`](#lumberDone)
   - [`lumber.Info()`](#lumberinfo)
   - [`lumber.Debug()`](#lumberdebug)
   - [`lumber.Warning()`](#lumberwarning)
@@ -30,14 +28,14 @@
 Simply run the following from your project root:
 
 ```bash
-go get -u github.com/gleich/lumber/v2
+go get -u github.com/gleich/lumber/v3
 ```
 
 ## Logging Functions
 
-### [`lumber.Success()`](https://pkg.go.dev/github.com/gleich/lumber/v2#Success)
+### [`lumber.Done()`](https://pkg.go.dev/github.com/gleich/lumber/v3#Done)
 
-Output a success log.
+Output a "DONE" log.
 
 Demo:
 
@@ -47,21 +45,21 @@ package main
 import (
     "time"
 
-    "github.com/gleich/lumber/v2"
+    "github.com/gleich/lumber/v3"
 )
 
 func main() {
-    lumber.Success("booted up the program!")
+    lumber.Done("booted up the program!")
     time.Sleep(2 * time.Second)
-    lumber.Success("waited 2 seconds!")
+    lumber.Done("waited 2 seconds!")
 }
 ```
 
 Outputs:
 
-![success output](images/success.png)
+![Done output](images/done.png)
 
-### [`lumber.Info()`](https://pkg.go.dev/github.com/gleich/lumber/v2#Info)
+### [`lumber.Info()`](https://pkg.go.dev/github.com/gleich/lumber/v3#Info)
 
 Output an info log.
 
@@ -73,7 +71,7 @@ package main
 import (
     "time"
 
-    "github.com/gleich/lumber/v2"
+    "github.com/gleich/lumber/v3"
 )
 
 func main() {
@@ -87,7 +85,7 @@ Outputs:
 
 ![info output](images/info.png)
 
-### [`lumber.Debug()`](https://pkg.go.dev/github.com/gleich/lumber/v2#Debug)
+### [`lumber.Debug()`](https://pkg.go.dev/github.com/gleich/lumber/v3#Debug)
 
 Output a debug log.
 
@@ -99,7 +97,7 @@ package main
 import (
     "os"
 
-    "github.com/gleich/lumber/v2"
+    "github.com/gleich/lumber/v3"
 )
 
 func main() {
@@ -112,7 +110,7 @@ Outputs:
 
 ![debug output](images/debug.png)
 
-### [`lumber.Warning()`](https://pkg.go.dev/github.com/gleich/lumber/v2#Warning)
+### [`lumber.Warning()`](https://pkg.go.dev/github.com/gleich/lumber/v3#Warning)
 
 Output a warning log.
 
@@ -124,7 +122,7 @@ package main
 import (
     "time"
 
-    "github.com/gleich/lumber/v2"
+    "github.com/gleich/lumber/v3"
 )
 
 func main() {
@@ -139,7 +137,7 @@ Outputs:
 
 ![warning output](images/warning.png)
 
-### [`lumber.Error()`](https://pkg.go.dev/github.com/gleich/lumber/v2#Error)
+### [`lumber.Error()`](https://pkg.go.dev/github.com/gleich/lumber/v3#Error)
 
 Output an error log with a stack trace.
 
@@ -151,7 +149,7 @@ package main
 import (
     "os"
 
-    "github.com/gleich/lumber/v2"
+    "github.com/gleich/lumber/v3"
 )
 
 func main() {
@@ -167,7 +165,7 @@ Outputs:
 
 ![error output](images/error.png)
 
-### [`lumber.ErrorMsg()`](https://pkg.go.dev/github.com/gleich/lumber/v2#ErrorMsg)
+### [`lumber.ErrorMsg()`](https://pkg.go.dev/github.com/gleich/lumber/v3#ErrorMsg)
 
 Output an error message.
 
@@ -176,7 +174,7 @@ Demo:
 ```go
 package main
 
-import "github.com/gleich/lumber/v2"
+import "github.com/gleich/lumber/v3"
 
 func main() {
     lumber.ErrorMsg("Ahhh stuff broke")
@@ -187,7 +185,7 @@ Outputs:
 
 ![errorMsg output](images/errorMsg.png)
 
-### [`lumber.Fatal()`](https://pkg.go.dev/github.com/gleich/lumber/v2#Fatal)
+### [`lumber.Fatal()`](https://pkg.go.dev/github.com/gleich/lumber/v3#Fatal)
 
 Output a fatal log with a stack trace.
 
@@ -199,7 +197,7 @@ package main
 import (
     "os"
 
-    "github.com/gleich/lumber/v2"
+    "github.com/gleich/lumber/v3"
 )
 
 func main() {
@@ -215,7 +213,7 @@ Outputs:
 
 ![fatal output](images/fatal.png)
 
-### [`lumber.FatalMsg()`](https://pkg.go.dev/github.com/gleich/lumber/v2#FatalMsg)
+### [`lumber.FatalMsg()`](https://pkg.go.dev/github.com/gleich/lumber/v3#FatalMsg)
 
 Output a fatal message.
 
@@ -224,7 +222,7 @@ Demo:
 ```go
 package main
 
-import "github.com/gleich/lumber/v2"
+import "github.com/gleich/lumber/v3"
 
 func main() {
     lumber.FatalMsg("Ahhh stuff broke")
@@ -237,38 +235,26 @@ Outputs:
 
 ## Customization
 
-You can customize lumber by creating a custom logger and changing values on it. You then call the log functions on the custom logger. Below is an example of this.
+You can customize the logger that lumber uses. Below is an example of some of this customization:
 
 ```go
 package main
 
-import "github.com/gleich/lumber/v2"
+import (
+    "time"
+
+    "github.com/gleich/lumber/v3"
+)
 
 func main() {
-    log := lumber.NewCustomLogger()
-    log.ColoredOutput = false
-    log.ExitCode = 2
+    lumber.SetTimezone(time.Local)
+	lumber.SetTimeFormat("Mon Jan 2 15:04:05 MST 2006")
+	lumber.SetFatalExitCode(0)
 
-    log.Success("Calling from custom logger!")
+    lumber.Done("Calling from custom logger")
 }
 ```
 
-Here are all the variables that can be changed:
-
-| **Variable Name** | **Description**                                                                      | **Default Value**      | **Type**         |
-| ----------------- | ------------------------------------------------------------------------------------ | ---------------------- | ---------------- |
-| `NormalOut`       | The output file for Debug, Success, Warning, and Info                                | `os.Stdout`            | `*os.File`       |
-| `ErrOut`          | The output file for Fatal and Error                                                  | `os.Stderr`            | `*os.File`       |
-| `ExtraNormalOuts` | Extra normal output destinations (e.g. outputting to a file as well as stdout)       | `[]io.Writer{}`        | `[]io.Writer`    |
-| `ExtraErrOuts`    | Extra error output destinations (e.g. outputting to a file as well as stderr)        | `[]io.Writer{}`        | `[]io.Writer`    |
-| `ExitCode`        | Fatal exit code                                                                      | `1`                    | `int`            |
-| `Padding`         | If the log should have an extra new line at the bottom                               | `false`                | `bool`           |
-| `ColoredOutput`   | If the output should have color                                                      | `true`                 | `bool`           |
-| `TrueColor`       | If the output colors should be true colors. Default is true if terminal supports it. | `has256ColorSupport()` | `bool`           |
-| `ShowStack`       | If stack traces should be shown                                                      | `true`                 | `bool`           |
-| `Multiline`       | If the should should be spread out to more than one line                             | `false`                | `bool`           |
-| `Timezone`        | Timezone you want the times to be logged in                                          | `time.UTC`             | `*time.Location` |
-
 # Examples
 
-See some examples in the [\_examples/](_examples/) folder! Just run them using `go run main.go`.
+See some examples in the [\_examples/](_examples/) folder.

@@ -49,7 +49,10 @@ func logError(err error, level logLevel, color lipgloss.Style, v ...any) {
 	defer Logger.mutex.RUnlock()
 	out := format(level, color, v...)
 	if err != nil && Logger.showStack {
-		out += "\n" + errors.WithStack(err).Error()
+		out += fmt.Sprintf("\n%+v", errors.WithStack(err))
+	} else if err != nil {
+
+		out += fmt.Sprintf("\n%s", err)
 	}
 	log.New(io.MultiWriter(append(Logger.extraErrOuts, Logger.errOut)...), "", 0).Println(out)
 }
