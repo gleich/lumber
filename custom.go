@@ -13,17 +13,17 @@ var logger loggerOptions = *defaultLogger()
 
 type loggerOptions struct {
 	mutex           *sync.RWMutex
-	normalOut       io.Writer // Output for Debug, Done, Warning, and Info. Default is os.Stdout
-	errOut          io.Writer // Output for Fatal, FatalMsg, Error, and ErrorMsg. Default is os.Stderr
+	normalOut       io.Writer
+	errOut          io.Writer
 	normalRenderer  lipgloss.Renderer
 	errRenderer     lipgloss.Renderer
-	extraNormalOuts []io.Writer    // Extra normal output destinations (e.g. logging to a file)
-	extraErrOuts    []io.Writer    // Extra error output destinations (e.g. logging to a file)
-	fatalExitCode   int            // Fatal exit code. Default is 1
-	showStack       bool           // If stack traces should be logged. Default is true
-	timeFormat      string         // Time format of the logs. Defaults to 2006/01/02 15:04:05 MST
-	timezone        *time.Location // Timezone for logging. Default is UTC
-	colors          Colors         // Colors for the outputs
+	extraNormalOuts []io.Writer
+	extraErrOuts    []io.Writer
+	fatalExitCode   int
+	showStack       bool
+	timeFormat      string
+	timezone        *time.Location
+	colors          Colors
 }
 
 type Colors struct {
