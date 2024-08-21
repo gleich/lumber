@@ -9,9 +9,9 @@ import (
 	"github.com/charmbracelet/lipgloss"
 )
 
-var Logger logger = *DefaultLogger()
+var logger loggerOptions = *defaultLogger()
 
-type logger struct {
+type loggerOptions struct {
 	mutex           *sync.RWMutex
 	normalOut       io.Writer // Output for Debug, Done, Warning, and Info. Default is os.Stdout
 	errOut          io.Writer // Output for Fatal, FatalMsg, Error, and ErrorMsg. Default is os.Stderr
@@ -36,16 +36,16 @@ type Colors struct {
 }
 
 const (
-	DefaultDebugColor = "#2B95FF"
-	DefaultDoneColor  = "#30CE75"
-	DefaultWarnColor  = "#E1DC3F"
-	DefaultFatalColor = "#FF4747"
-	DefaultErrorColor = "#FF4747"
+	defaultDebugColor = "#2B95FF"
+	defaultDoneColor  = "#30CE75"
+	defaultWarnColor  = "#E1DC3F"
+	defaultFatalColor = "#FF4747"
+	defaultErrorColor = "#FF4747"
 )
 
 // Initialize the default logger with the default values
-func DefaultLogger() *logger {
-	l := logger{
+func defaultLogger() *loggerOptions {
+	l := loggerOptions{
 		mutex:           &sync.RWMutex{},
 		normalOut:       os.Stdout,
 		errOut:          os.Stderr,
@@ -60,20 +60,20 @@ func DefaultLogger() *logger {
 	}
 	l.colors = Colors{
 		DebugStyle: l.normalRenderer.NewStyle().
-			Foreground(lipgloss.Color(DefaultDebugColor)).
+			Foreground(lipgloss.Color(defaultDebugColor)).
 			Bold(true),
 		InfoStyle: l.normalRenderer.NewStyle().Bold(true),
 		WarningStyle: l.normalRenderer.NewStyle().
-			Foreground(lipgloss.Color(DefaultWarnColor)).
+			Foreground(lipgloss.Color(defaultWarnColor)).
 			Bold(true),
 		DoneStyle: l.normalRenderer.NewStyle().
-			Foreground(lipgloss.Color(DefaultDoneColor)).
+			Foreground(lipgloss.Color(defaultDoneColor)).
 			Bold(true),
 		FatalStyle: l.errRenderer.NewStyle().
-			Foreground(lipgloss.Color(DefaultFatalColor)).
+			Foreground(lipgloss.Color(defaultFatalColor)).
 			Bold(true),
 		ErrorStyle: l.errRenderer.NewStyle().
-			Foreground(lipgloss.Color(DefaultErrorColor)).
+			Foreground(lipgloss.Color(defaultErrorColor)).
 			Bold(true),
 	}
 	return &l
@@ -83,20 +83,20 @@ func DefaultLogger() *logger {
 //
 // Default is os.Stdout
 func SetNormalOut(out *os.File) {
-	Logger.mutex.Lock()
-	defer Logger.mutex.Unlock()
-	Logger.normalOut = out
-	Logger.normalRenderer = *lipgloss.NewRenderer(out)
+	logger.mutex.Lock()
+	defer logger.mutex.Unlock()
+	logger.normalOut = out
+	logger.normalRenderer = *lipgloss.NewRenderer(out)
 	// rerendering colors incase new output doesn't support colors
-	Logger.colors.DebugStyle = Logger.normalRenderer.NewStyle().
-		Foreground(lipgloss.Color(DefaultDebugColor)).
+	logger.colors.DebugStyle = logger.normalRenderer.NewStyle().
+		Foreground(lipgloss.Color(defaultDebugColor)).
 		Bold(true)
-	Logger.colors.InfoStyle = Logger.normalRenderer.NewStyle().Bold(true)
-	Logger.colors.DoneStyle = Logger.normalRenderer.NewStyle().
-		Foreground(lipgloss.Color(DefaultDoneColor)).
+	logger.colors.InfoStyle = logger.normalRenderer.NewStyle().Bold(true)
+	logger.colors.DoneStyle = logger.normalRenderer.NewStyle().
+		Foreground(lipgloss.Color(defaultDoneColor)).
 		Bold(true)
-	Logger.colors.WarningStyle = Logger.normalRenderer.NewStyle().
-		Foreground(lipgloss.Color(DefaultWarnColor)).
+	logger.colors.WarningStyle = logger.normalRenderer.NewStyle().
+		Foreground(lipgloss.Color(defaultWarnColor)).
 		Bold(true)
 }
 
@@ -104,65 +104,77 @@ func SetNormalOut(out *os.File) {
 //
 // Default is os.Stderr
 func SetErrOut(out *os.File) {
-	Logger.mutex.Lock()
-	defer Logger.mutex.Unlock()
-	Logger.errOut = out
-	Logger.errRenderer = *lipgloss.NewRenderer(out)
+	logger.mutex.Lock()
+	defer logger.mutex.Unlock()
+	logger.errOut = out
+	logger.errRenderer = *lipgloss.NewRenderer(out)
 	// rerendering colors incase new output doesn't support colors
-	Logger.colors.FatalStyle = Logger.errRenderer.NewStyle().
-		Foreground(lipgloss.Color(DefaultFatalColor)).
+	logger.colors.ErrorStyle = logger.errRenderer.NewStyle().
+		Foreground(lipgloss.Color(defaultErrorColor)).
 		Bold(true)
-	Logger.colors.ErrorStyle = Logger.errRenderer.NewStyle().
-		Foreground(lipgloss.Color(DefaultErrorColor)).
+	logger.colors.FatalStyle = logger.errRenderer.NewStyle().
+		Foreground(lipgloss.Color(defaultFatalColor)).
 		Bold(true)
+}
+
+// Set the colors used for logging
+func SetColors(colors Colors) {
+	logger.mutex.Lock()
+	defer logger.mutex.Unlock()
+	logger.colors.DebugStyle = logger.normalRenderer.NewStyle().Inherit(colors.DebugStyle)
+	logger.colors.InfoStyle = logger.normalRenderer.NewStyle().Inherit(colors.InfoStyle)
+	logger.colors.DoneStyle = logger.normalRenderer.NewStyle().Inherit(colors.DoneStyle)
+	logger.colors.WarningStyle = logger.normalRenderer.NewStyle().Inherit(colors.WarningStyle)
+	logger.colors.ErrorStyle = logger.errRenderer.NewStyle().Inherit(colors.ErrorStyle)
+	logger.colors.FatalStyle = logger.errRenderer.NewStyle().Inherit(colors.FatalStyle)
 }
 
 // Set the extra normal out destinations (e.g. logging to a file)
 func SetExtraNormalOuts(outs []io.Writer) {
-	Logger.mutex.Lock()
-	defer Logger.mutex.Unlock()
-	Logger.extraNormalOuts = outs
+	logger.mutex.Lock()
+	defer logger.mutex.Unlock()
+	logger.extraNormalOuts = outs
 }
 
 // Set the extra normal out destinations (e.g. logging to a file)
 func SetExtraErrOuts(outs []io.Writer) {
-	Logger.mutex.Lock()
-	defer Logger.mutex.Unlock()
-	Logger.extraErrOuts = outs
+	logger.mutex.Lock()
+	defer logger.mutex.Unlock()
+	logger.extraErrOuts = outs
 }
 
 // Set the exit code used by Fatal and FatalMsg.
 //
 // Default is 1
 func SetFatalExitCode(code int) {
-	Logger.mutex.Lock()
-	defer Logger.mutex.Unlock()
-	Logger.fatalExitCode = code
+	logger.mutex.Lock()
+	defer logger.mutex.Unlock()
+	logger.fatalExitCode = code
 }
 
 // Set if the stack trace should be shown or not when calling Error or Fatal.
 //
 // Default is true
 func SetShowStack(show bool) {
-	Logger.mutex.Lock()
-	defer Logger.mutex.Unlock()
-	Logger.showStack = show
+	logger.mutex.Lock()
+	defer logger.mutex.Unlock()
+	logger.showStack = show
 }
 
 // Set the time format
 //
 // Default is 2006/01/02 15:04:05 MST
 func SetTimeFormat(format string) {
-	Logger.mutex.Lock()
-	defer Logger.mutex.Unlock()
-	Logger.timeFormat = format
+	logger.mutex.Lock()
+	defer logger.mutex.Unlock()
+	logger.timeFormat = format
 }
 
 // Set the timezone
 //
 // Default is time.UTC
 func SetTimezone(loc *time.Location) {
-	Logger.mutex.Lock()
-	defer Logger.mutex.Unlock()
-	Logger.timezone = loc
+	logger.mutex.Lock()
+	defer logger.mutex.Unlock()
+	logger.timezone = loc
 }

@@ -30,7 +30,7 @@ func format(level logLevel, color lipgloss.Style, v ...any) string {
 	}
 	return fmt.Sprintf(
 		"%s %s %s",
-		time.Now().In(Logger.timezone).Format(Logger.timeFormat),
+		time.Now().In(logger.timezone).Format(logger.timeFormat),
 		color.Render(string(level)),
 		strings.TrimPrefix(joined, " "),
 	)
@@ -38,63 +38,63 @@ func format(level logLevel, color lipgloss.Style, v ...any) string {
 
 // Normal log output
 func logNormal(level logLevel, color lipgloss.Style, v ...any) {
-	Logger.mutex.RLock()
-	defer Logger.mutex.RUnlock()
+	logger.mutex.RLock()
+	defer logger.mutex.RUnlock()
 	out := format(level, color, v...)
-	log.New(io.MultiWriter(append(Logger.extraNormalOuts, Logger.normalOut)...), "", 0).Println(out)
+	log.New(io.MultiWriter(append(logger.extraNormalOuts, logger.normalOut)...), "", 0).Println(out)
 }
 
 func logError(err error, level logLevel, color lipgloss.Style, v ...any) {
-	Logger.mutex.RLock()
-	defer Logger.mutex.RUnlock()
+	logger.mutex.RLock()
+	defer logger.mutex.RUnlock()
 	out := format(level, color, v...)
-	if err != nil && Logger.showStack {
+	if err != nil && logger.showStack {
 		out += fmt.Sprintf("\n%+v", errors.WithStack(err))
 	} else if err != nil {
 
 		out += fmt.Sprintf("\n%s", err)
 	}
-	log.New(io.MultiWriter(append(Logger.extraErrOuts, Logger.errOut)...), "", 0).Println(out)
+	log.New(io.MultiWriter(append(logger.extraErrOuts, logger.errOut)...), "", 0).Println(out)
 }
 
 // Output a INFO log message
 func Debug(v ...any) {
-	logNormal(debugLevel, Logger.colors.DebugStyle, v...)
+	logNormal(debugLevel, logger.colors.DebugStyle, v...)
 }
 
 // Output a DONE log message
 func Done(v ...any) {
-	logNormal(doneLevel, Logger.colors.DoneStyle, v...)
+	logNormal(doneLevel, logger.colors.DoneStyle, v...)
 }
 
 // Output a INFO log message
 func Info(v ...any) {
-	logNormal(infoLevel, Logger.colors.InfoStyle, v...)
+	logNormal(infoLevel, logger.colors.InfoStyle, v...)
 }
 
 // Output a WARN log message
 func Warning(v ...any) {
-	logNormal(warningLevel, Logger.colors.WarningStyle, v...)
+	logNormal(warningLevel, logger.colors.WarningStyle, v...)
 }
 
 // Output a ERROR log message with information about the error
 func Error(err error, v ...any) {
-	logError(err, errorLevel, Logger.colors.ErrorStyle, v...)
+	logError(err, errorLevel, logger.colors.ErrorStyle, v...)
 }
 
 // Output a ERROR log message
 func ErrorMsg(v ...any) {
-	logError(nil, errorLevel, Logger.colors.ErrorStyle, v...)
+	logError(nil, errorLevel, logger.colors.ErrorStyle, v...)
 }
 
 // Output a FATAL log message with information about the error
 func Fatal(err error, v ...any) {
-	logError(err, fatalLevel, Logger.colors.FatalStyle, v...)
-	os.Exit(Logger.fatalExitCode)
+	logError(err, fatalLevel, logger.colors.FatalStyle, v...)
+	os.Exit(logger.fatalExitCode)
 }
 
 // Output a FATAL log message
 func FatalMsg(v ...any) {
-	logError(nil, fatalLevel, Logger.colors.FatalStyle, v...)
-	os.Exit(Logger.fatalExitCode)
+	logError(nil, fatalLevel, logger.colors.FatalStyle, v...)
+	os.Exit(logger.fatalExitCode)
 }
