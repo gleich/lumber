@@ -27,12 +27,12 @@ type logger struct {
 }
 
 type Colors struct {
-	DebugStyle lipgloss.Style
-	InfoStyle  lipgloss.Style
-	DoneStyle  lipgloss.Style
-	WarnStyle  lipgloss.Style
-	ErrorStyle lipgloss.Style
-	FatalStyle lipgloss.Style
+	DebugStyle   lipgloss.Style
+	InfoStyle    lipgloss.Style
+	DoneStyle    lipgloss.Style
+	WarningStyle lipgloss.Style
+	ErrorStyle   lipgloss.Style
+	FatalStyle   lipgloss.Style
 }
 
 const (
@@ -63,7 +63,7 @@ func DefaultLogger() *logger {
 			Foreground(lipgloss.Color(DefaultDebugColor)).
 			Bold(true),
 		InfoStyle: l.normalRenderer.NewStyle().Bold(true),
-		WarnStyle: l.normalRenderer.NewStyle().
+		WarningStyle: l.normalRenderer.NewStyle().
 			Foreground(lipgloss.Color(DefaultWarnColor)).
 			Bold(true),
 		DoneStyle: l.normalRenderer.NewStyle().
@@ -82,20 +82,20 @@ func DefaultLogger() *logger {
 // Set the output or Debug, Done, Warning, and Info.
 //
 // Default is os.Stdout
-func (l *logger) SetNormalOut(out *os.File) {
-	l.mutex.Lock()
-	defer l.mutex.Unlock()
-	l.normalOut = out
-	l.normalRenderer = *lipgloss.NewRenderer(out)
+func SetNormalOut(out *os.File) {
+	Logger.mutex.Lock()
+	defer Logger.mutex.Unlock()
+	Logger.normalOut = out
+	Logger.normalRenderer = *lipgloss.NewRenderer(out)
 	// rerendering colors incase new output doesn't support colors
-	l.colors.DebugStyle = l.normalRenderer.NewStyle().
+	Logger.colors.DebugStyle = Logger.normalRenderer.NewStyle().
 		Foreground(lipgloss.Color(DefaultDebugColor)).
 		Bold(true)
-	l.colors.InfoStyle = l.normalRenderer.NewStyle().Bold(true)
-	l.colors.DoneStyle = l.normalRenderer.NewStyle().
+	Logger.colors.InfoStyle = Logger.normalRenderer.NewStyle().Bold(true)
+	Logger.colors.DoneStyle = Logger.normalRenderer.NewStyle().
 		Foreground(lipgloss.Color(DefaultDoneColor)).
 		Bold(true)
-	l.colors.WarnStyle = l.normalRenderer.NewStyle().
+	Logger.colors.WarningStyle = Logger.normalRenderer.NewStyle().
 		Foreground(lipgloss.Color(DefaultWarnColor)).
 		Bold(true)
 }
@@ -103,66 +103,66 @@ func (l *logger) SetNormalOut(out *os.File) {
 // Set the output or Fatal, FatalMsg, Error, and ErrorMsg.
 //
 // Default is os.Stderr
-func (l *logger) SetErrOut(out *os.File) {
-	l.mutex.Lock()
-	defer l.mutex.Unlock()
-	l.errOut = out
-	l.errRenderer = *lipgloss.NewRenderer(out)
+func SetErrOut(out *os.File) {
+	Logger.mutex.Lock()
+	defer Logger.mutex.Unlock()
+	Logger.errOut = out
+	Logger.errRenderer = *lipgloss.NewRenderer(out)
 	// rerendering colors incase new output doesn't support colors
-	l.colors.FatalStyle = l.errRenderer.NewStyle().
+	Logger.colors.FatalStyle = Logger.errRenderer.NewStyle().
 		Foreground(lipgloss.Color(DefaultFatalColor)).
 		Bold(true)
-	l.colors.ErrorStyle = l.errRenderer.NewStyle().
+	Logger.colors.ErrorStyle = Logger.errRenderer.NewStyle().
 		Foreground(lipgloss.Color(DefaultErrorColor)).
 		Bold(true)
 }
 
 // Set the extra normal out destinations (e.g. logging to a file)
-func (l *logger) SetExtraNormalOuts(outs []io.Writer) {
-	l.mutex.Lock()
-	defer l.mutex.Unlock()
-	l.extraNormalOuts = outs
+func SetExtraNormalOuts(outs []io.Writer) {
+	Logger.mutex.Lock()
+	defer Logger.mutex.Unlock()
+	Logger.extraNormalOuts = outs
 }
 
 // Set the extra normal out destinations (e.g. logging to a file)
-func (l *logger) SetExtraErrOuts(outs []io.Writer) {
-	l.mutex.Lock()
-	defer l.mutex.Unlock()
-	l.extraErrOuts = outs
+func SetExtraErrOuts(outs []io.Writer) {
+	Logger.mutex.Lock()
+	defer Logger.mutex.Unlock()
+	Logger.extraErrOuts = outs
 }
 
 // Set the exit code used by Fatal and FatalMsg.
 //
 // Default is 1
-func (l *logger) SetFatalExitCode(code int) {
-	l.mutex.Lock()
-	defer l.mutex.Unlock()
-	l.fatalExitCode = code
+func SetFatalExitCode(code int) {
+	Logger.mutex.Lock()
+	defer Logger.mutex.Unlock()
+	Logger.fatalExitCode = code
 }
 
 // Set if the stack trace should be shown or not when calling Error or Fatal.
 //
 // Default is true
-func (l *logger) SetShowStack(show bool) {
-	l.mutex.Lock()
-	defer l.mutex.Unlock()
-	l.showStack = show
+func SetShowStack(show bool) {
+	Logger.mutex.Lock()
+	defer Logger.mutex.Unlock()
+	Logger.showStack = show
 }
 
 // Set the time format
 //
 // Default is 2006/01/02 15:04:05 MST
-func (l *logger) SetTimeFormat(format string) {
-	l.mutex.Lock()
-	defer l.mutex.Unlock()
-	l.timeFormat = format
+func SetTimeFormat(format string) {
+	Logger.mutex.Lock()
+	defer Logger.mutex.Unlock()
+	Logger.timeFormat = format
 }
 
 // Set the timezone
 //
 // Default is time.UTC
-func (l *logger) SetTimezone(loc *time.Location) {
-	l.mutex.Lock()
-	defer l.mutex.Unlock()
-	l.timezone = loc
+func SetTimezone(loc *time.Location) {
+	Logger.mutex.Lock()
+	defer Logger.mutex.Unlock()
+	Logger.timezone = loc
 }

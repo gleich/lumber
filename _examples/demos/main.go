@@ -5,15 +5,15 @@ import (
 	"os"
 	"time"
 
-	"github.com/gleich/lumber/v2"
+	"github.com/gleich/lumber/v3"
 )
 
 func main() {
 	demos := []func(){
 		func() {
-			lumber.Success("Loaded up the program!")
+			lumber.Done("Loaded up the program!")
 			time.Sleep(2 * time.Second)
-			lumber.Success("Waited 2 seconds")
+			lumber.Done("Waited 2 seconds")
 		},
 		func() {
 			lumber.Info("Getting the current year")

@@ -7,5 +7,7 @@ func main() {
 	lumber.Debug(msg)
 	lumber.Done(msg)
 	lumber.Info(msg)
-	lumber.Warn(msg)
+	lumber.Warning(msg)
+	lumber.ErrorMsg(msg)
+	lumber.FatalMsg(msg)
 }
