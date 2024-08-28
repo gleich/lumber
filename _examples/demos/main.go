@@ -38,7 +38,7 @@ func main() {
 			}
 		},
 		func() {
-			lumber.FatalMsg("Ahhh stuff broke")
+			lumber.FatalMsg("Fatal message")
 		},
 	}
 
