@@ -248,8 +248,8 @@ import (
 
 func main() {
     lumber.SetTimezone(time.Local)
-	lumber.SetTimeFormat("Mon Jan 2 15:04:05 MST 2006")
-	lumber.SetFatalExitCode(0)
+    lumber.SetTimeFormat("Mon Jan 2 15:04:05 MST 2006")
+    lumber.SetFatalExitCode(0)
 
     lumber.Done("Calling from custom logger")
 }
