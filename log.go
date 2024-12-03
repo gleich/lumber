@@ -24,15 +24,18 @@ const (
 )
 
 func format(level logLevel, color lipgloss.Style, v ...any) string {
-	var joined string
-	for _, item := range v {
-		joined = fmt.Sprintf("%v %v", joined, item)
+	var joined strings.Builder
+	for i, item := range v {
+		if i > 0 {
+			joined.WriteString(" ")
+		}
+		fmt.Fprint(&joined, item)
 	}
 	return fmt.Sprintf(
 		"%s %s %s",
 		time.Now().In(logger.timezone).Format(logger.timeFormat),
 		color.Render(string(level)),
-		strings.TrimPrefix(joined, " "),
+		strings.TrimPrefix(joined.String(), " "),
 	)
 }
 
