@@ -10,6 +10,8 @@
 </div>
 <hr>
 
+_This project is no longer maintained. Please use [timber](https://github/gleich/timber)._
+
 - [Install](#-install)
 - [Logging Functions](#-logging-functions)
   - [`lumber.Done()`](#lumberDone)
